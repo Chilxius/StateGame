@@ -22,4 +22,9 @@ class StateManager
   {
     state.mouseReact( this, pressed );
   }
+  
+  void setState( GameState newState )
+  {
+    state = newState;
+  }
 }

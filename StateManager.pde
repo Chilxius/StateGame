@@ -5,21 +5,21 @@ class StateManager
   
   void display()
   {
-    state.display();
+    state.display(data);
   }
   
   void update()
   {
-    state.update();
+    state.update(data);
   }
   
   void keyReact( boolean pressed )
   {
-    state.keyReact(pressed);
+    state.keyReact( this, pressed );
   }
   
   void mouseReact( boolean pressed )
   {
-    state.mouseReact(pressed);
+    state.mouseReact( this, pressed );
   }
 }

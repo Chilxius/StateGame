@@ -1,12 +1,19 @@
 //Big Game with State
+StateManager manager;
 
 void setup()
 {
-  size(900,900);
-  background(0);
+  fullScreen();
+  manager = new StateManager();
 }
 
 void draw()
 {
-  circle(100,200,5);
+  manager.display();
+  manager.update();
 }
+
+void keyPressed()   {  manager.keyReact(true);   }
+void keyReleased()  {  manager.keyReact(false);  }
+void mousePressed() { manager.mouseReact(true);  }
+void mouseReleased(){ manager.mouseReact(false); }

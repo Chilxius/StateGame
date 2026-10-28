@@ -3,6 +3,12 @@ class StateManager
   GameData data;
   GameState state;
   
+  StateManager()
+  {
+    data = new GameData();
+    state = new IntroScreenState();
+  }
+  
   void display()
   {
     state.display(data);

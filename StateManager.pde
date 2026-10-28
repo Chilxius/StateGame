@@ -1,7 +1,24 @@
+/*
+              Settings <--*  *--> Lockpick
+                 ^        |  |  *--> NPC/Riddle
+                 |        |  |  |
+                 V        V  V  V    ,--> Win
+    Splash --> Title -->  Explore --<
+                 ^        ^  ^  ^    `--> Game Over
+                 |        |  |  |
+                 V        |  |  *--> Fight
+               DressUp <--*  *--> Trap
+*/
 class StateManager
 {
   GameData data;
   GameState state;
+  
+  StateManager()
+  {
+    data = new GameData();
+    state = new IntroScreenState();
+  }
   
   void display()
   {

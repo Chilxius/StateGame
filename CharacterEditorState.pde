@@ -22,7 +22,7 @@ class CharacterEditorState implements GameState
     {
       if( dist(mouseX, mouseY, 100, height - 100) < 30)
       {
-        manager.changeState(new PlayState());
+        changeState(manager, new TitleScreenState());
       }
     }
   }

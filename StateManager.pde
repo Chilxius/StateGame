@@ -9,15 +9,19 @@
                  V        |  |  *--> Fight
                DressUp <--*  *--> Trap
 */
+
 class StateManager
 {
   GameData data;
   GameState state;
+  GameState previousState;
   
   StateManager()
   {
     data = new GameData();
     state = new IntroScreenState();
+    //state = new CharacterEditorState();
+    //state = new TitleScreenState();
   }
   
   void display()

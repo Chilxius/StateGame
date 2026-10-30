@@ -4,7 +4,7 @@ class TitleScreenState implements GameState
   
   void display( GameData data )
   {
-    background(898989);
+    background(169,169,169);
     text("Play", width/3,height/2);
     noFill();
   }

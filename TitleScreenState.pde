@@ -7,7 +7,6 @@ class TitleScreenState implements GameState
     background(676765);
     text("Play", width/3,height/2);
     noFill();
-    
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}
@@ -18,3 +17,4 @@ class TitleScreenState implements GameState
   {
     manager.setState(newState);
   }
+}

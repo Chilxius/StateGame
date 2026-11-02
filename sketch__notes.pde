@@ -38,6 +38,9 @@ Character:
     draw self
       big
       small
+      
+    public void display( GameData d, int x, int y )
+      
     change:
       hair
       skin

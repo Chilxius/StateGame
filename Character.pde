@@ -27,28 +27,10 @@ class Character
   }
   
   //Our changers
-  public void setHairStyle(int hairType)
-  {
-    hairStyle = hairType;
-  }
-  public void setHairColor(color hairDye)
-  {
-    hairColor = hairDye;
-  }
-  public void setFaceStyle(int therapy)
-  {
-    faceStyle = therapy;
-  }
-  public void setSkinColor(color skinDye)
-  {
-    skinColor = skinDye;
-  }
-  public void setClothStyle(int clothChange)
-  {
-    clothStyle = clothChange;
-  }
-  public void setClothColor(color clothDye)
-  {
-    clothColor = clothDye;
-  }
+  public void setHairStyle(int hairType)         {hairStyle = hairType;}
+  public void setHairColor(color hairDye)         {hairColor = hairDye;}
+  public void setFaceStyle(int therapy)           {faceStyle = therapy;}
+  public void setSkinColor(color skinDye)         {skinColor = skinDye;}
+  public void setClothStyle(int clothChange) {clothStyle = clothChange;}
+  public void setClothColor(color clothDye)     {clothColor = clothDye;}
 }

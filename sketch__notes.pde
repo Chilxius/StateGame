@@ -39,10 +39,15 @@ Character:
       big
       small
       
-    public void display( GameData d, int x, int y )
-      image( data.hairStyle(hairStyle), x, y, 100, 100 );
     change:
       hair
-      skin
+        public void setHair( int type )
+        {
+          hair = type;
+        }
+      hair color
+      skin color
+      face
       clothes
+      clothes color
 */

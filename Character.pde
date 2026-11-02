@@ -5,12 +5,12 @@ class Character
   int LP = 0;   //lockpicks
   int rope = 0; //spools of rope
   
-  color hairColor = color(255,255,50);
-  int hairStyle = int(random(5));
-  color skinColor = color(255,220,255);
-  int faceStyle = int(random(5));
-  color clothColor = color(76,255,26);
-  int clothStyle = int(random(5));
+  private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));
+  private int hairStyle = int(random(5));
+  private color skinColor = color(int(random(255)),int(random(255)),int(random(255)));
+  private int faceStyle = int(random(5));
+  private color clothColor = color(int(random(255)),int(random(255)),int(random(255)));
+  private int clothStyle = int(random(5));
   
   public void display(GameData data, int x, int y)
   {

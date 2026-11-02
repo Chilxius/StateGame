@@ -40,7 +40,7 @@ Character:
       small
       
     public void display( GameData d, int x, int y )
-      
+      image( data.hairStyle(hairStyle), x, y, 100, 100 );
     change:
       hair
       skin

@@ -4,7 +4,7 @@ class IntroScreenState implements GameState
   
   IntroScreenState()
   {
-    startButton = new Button("Please Push Me",500,500,300,200);
+    startButton = new Button("Start Game", width/2, height-200, 150,100);
   }
   
   void update( GameData data ) {}
@@ -17,14 +17,17 @@ class IntroScreenState implements GameState
     textAlign(CENTER);
     text("BEST GAME EVAR",width/2,height/2);
     
-    
+    data.character().display(data, width/2, height/2-200);
     
     startButton.drawButton();
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}
   
-  void mouseReact( StateManager manager, boolean pressed ) {}
+  void mouseReact( StateManager manager, boolean pressed )
+  {
+    //button reaction
+  }
   
   void changeState( StateManager manager, GameState newState )
   {

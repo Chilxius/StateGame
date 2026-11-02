@@ -7,10 +7,13 @@ class GameData
   
   private Character theCharacter;
   
+  private Map map;
+  
   GameData()
   {
     loadImages();
     theCharacter = new Character();
+    map = new Map();
   }
   
   public Character character()

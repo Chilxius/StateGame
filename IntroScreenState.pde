@@ -12,6 +12,9 @@ class IntroScreenState implements GameState
   void display( GameData data )
   {
     background(0);
+    
+    data.map.display();
+    
     fill(255);
     textSize(75);
     textAlign(CENTER);

@@ -15,14 +15,40 @@ class Character
   public void display(GameData data, int x, int y)
   {
     noTint();
-    image(data.browns(),x,y,100,100);
+    image(data.browns(),x,y,150,150);
     tint(clothColor);
-    image(data.clothStyle(clothStyle),x,y,100,100);
+    image(data.clothStyle(clothStyle),x,y,150,150);
     tint(skinColor);
-    image(data.skin(),x,y,100,100);
+    image(data.skin(),x,y,150,150);
     noTint();
-    image(data.faceStyle(faceStyle),x,y,100,100);
+    image(data.faceStyle(faceStyle),x,y,150,150);
     tint(hairColor);
-    image(data.hairStyle(hairStyle),x,y,100,100);
+    image(data.hairStyle(hairStyle),x,y,150,150);
+  }
+  
+  //Our changers
+  public void setHairStyle(int hairType)
+  {
+    hairStyle = hairType;
+  }
+  public void setHairColor(color hairDye)
+  {
+    hairColor = hairDye;
+  }
+  public void setFaceStyle(int therapy)
+  {
+    faceStyle = therapy;
+  }
+  public void setSkinColor(color skinDye)
+  {
+    skinColor = skinDye;
+  }
+  public void setClothStyle(int clothChange)
+  {
+    clothStyle = clothChange;
+  }
+  public void setClothColor(color clothDye)
+  {
+    clothColor = clothDye;
   }
 }

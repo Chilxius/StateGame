@@ -14,6 +14,8 @@ class Character
   
   public void display(GameData data, int x, int y)
   {
-    
+    image(data.hairStyle(hairStyle),x,y,100,100);
+    image(data.faceStyle(faceStyle),x,y,100,100);
+    image(data.clothStyle(clothStyle),x,y,100,100);
   }
 }

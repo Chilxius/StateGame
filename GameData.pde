@@ -1,13 +1,21 @@
 class GameData
 {
-  PImage hairStyles[] = new PImage[5];
-  PImage clothStyles[] = new PImage[5];
-  PImage faceStyles[] = new PImage[5];
-  PImage browns, skin;
+  private PImage hairStyles[] = new PImage[5];
+  private PImage clothStyles[] = new PImage[5];
+  private PImage faceStyles[] = new PImage[5];
+  private PImage browns, skin;
+  
+  private Character theCharacter;
   
   GameData()
   {
     loadImages();
+    theCharacter = new Character();
+  }
+  
+  public Character character()
+  {
+    return theCharacter;
   }
   
   private void loadImages()

@@ -4,6 +4,7 @@ StateManager manager;
 void setup()
 {
   fullScreen();
+  imageMode(CENTER);
   manager = new StateManager();
 }
 

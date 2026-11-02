@@ -46,6 +46,7 @@ class StateManager
   
   void setState( GameState newState )
   {
+    previousState = state;
     state = newState;
   }
 }

@@ -5,8 +5,7 @@ class TitleScreenState implements GameState
   void display( GameData data )
   {
     background(169,169,169);
-    text("Play", width/3,height/2);
-    noFill();
+    
   }
   void keyReact( StateManager manager, boolean pressed ) {}
   

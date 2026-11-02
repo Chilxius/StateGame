@@ -2,19 +2,30 @@ class Tile
 {
   //TESTING
   color tileColor;
+  PImage tileImage;
   
-  Tile( int x )
+  //Tile type determined by character in map string
+  Tile( char c, HashMap<String,PImage> images )
   {
-    if( x == 0 )
-      tileColor = color(200);
+    if( c == '#' )
+    {
+      tileColor = color(0,0,0,0);
+      tileImage = images.get("stone wall");
+    }
     else
       tileColor = color(100);
   }
   
+  //Draws tile on specific location
   public void display( int x, int y )
   {
     stroke(255);
     fill( tileColor );
     rect( x, y, 50, 50 );
+    if( tileImage != null )
+    {
+      noTint();
+      image(tileImage,x,y,50,50);
+    }
   }
 }

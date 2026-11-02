@@ -13,7 +13,8 @@ class IntroScreenState implements GameState
   {
     background(0);
     
-    data.map.display();
+    //TESTING
+    data.map.display( data.mapX, data.mapY );
     
     fill(255);
     textSize(75);
@@ -25,11 +26,39 @@ class IntroScreenState implements GameState
     startButton.drawButton();
   }
   
-  void keyReact( StateManager manager, boolean pressed ) {}
+  void keyReact( StateManager manager, boolean pressed )
+  {
+    if( key == 'f' && pressed )
+      manager.data.character().setFaceStyle( int(random(5)) );
+    if( key == 'c' && pressed )
+      manager.data.character().setClothColor( color( int(random(255)), int(random(255)), int(random(255)) ) );
+      
+    if( pressed && keyCode == LEFT )
+      manager.data.mapX++;
+    if( pressed && keyCode == RIGHT )
+      manager.data.mapX--;
+    if( pressed && keyCode == UP )
+      manager.data.mapY++;
+    if( pressed && keyCode == DOWN )
+      manager.data.mapY--;
+  }
   
   void mouseReact( StateManager manager, boolean pressed )
-  {
-    //button reaction
+  {    
+    if( startButton.isButtonUnderMouse() ) //If mouse over button
+    {
+      if( pressed )  //If button being pressed
+        startButton.buttonClicked(); //Button sets 'pressed' to true
+      else //If being released
+      {
+        if( startButton.buttonReleased() ) //Un-press button (returns True if under mouse, meaning a complete click event has happened)
+          changeState( manager, new TitleScreenState() ); //Change state
+      }
+    }
+    else if( !pressed ) //If mouse button released
+    {
+      startButton.buttonReleased(); //Un-press button
+    }
   }
   
   void changeState( StateManager manager, GameState newState )

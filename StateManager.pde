@@ -19,6 +19,7 @@ class StateManager
   StateManager()
   {
     data = new GameData();
+    
     state = new IntroScreenState();
     //state = new CharacterEditorState();
     //state = new TitleScreenState();

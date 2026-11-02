@@ -5,15 +5,26 @@ class GameData
   private PImage faceStyles[] = new PImage[5];
   private PImage browns, skin;
   
+  //HashMap helps to organize the images, and allows them to be
+  // passed to Map() while the GameData and StateManager do not
+  // yet exist.
+  //All images added to mapImages should use lower-case, spaced
+  // names for the keys: "stone wall", "door"
+  HashMap<String,PImage> mapImages = new HashMap<String,PImage>();
+  
   private Character theCharacter;
   
   private Map map;
+  private int mapX, mapY;
   
   GameData()
   {
     loadImages();
     theCharacter = new Character();
-    map = new Map();
+    
+    mapX = 0;
+    mapY = 0;
+    map = new Map(mapImages);
   }
   
   public Character character()
@@ -31,6 +42,9 @@ class GameData
     }
     browns = loadImage( "browns.png" );
     skin = loadImage( "skin.png" );
+    
+    //Map images
+    mapImages.put( "stone wall", loadImage( "wall.png" ) );
   }
   
   public PImage hairStyle( int i )

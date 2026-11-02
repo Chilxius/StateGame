@@ -3,6 +3,7 @@ class Button
   //Instance Variables
   private String text;
   private boolean pressed;
+  private float roundness;
   private float xPos, yPos;
   private float bWidth, bHeight; //Width and Height. b means button.
   private color olColor, flColor; //ol means outline while fl means fill.
@@ -16,6 +17,7 @@ class Button
     olColor = oC; flColor = fC; baseFlColor = fC;
     
     text = "";
+    roundness = 10;
     pressed = false;
   }
   
@@ -25,6 +27,7 @@ class Button
     xPos = x; yPos = y;
     bWidth = w; bHeight = h;
     
+    roundness = 10;
     pressed = false;
     olColor = color(0); flColor = color(255); baseFlColor = flColor;
   }
@@ -34,6 +37,7 @@ class Button
     text = t;
     xPos = x; yPos = y;
     
+    roundness = 10;
     pressed = false;
     bWidth = 100; bHeight = 50;
     olColor = color(0); flColor = color(255); baseFlColor = flColor;
@@ -42,26 +46,14 @@ class Button
   //Methods
   void drawButton()
   {
-    //A Check, before drawing button, for hovering to darken button if true
-    if (isButtonUnderMouse()) 
-    {
-      //Creates a darker color of the baseFlColor when hovered over
-      color hoverColor = lerpColor(baseFlColor, color(0), 0.2); //20% darker
-      fill(hoverColor);
-    } 
-    else 
-    {
-      //If not hovering over it will change back to orginal color
-      fill(baseFlColor);
-    }
-    
     stroke(olColor);
-    rectMode(CENTER);
-    rect(xPos, yPos, bWidth, bHeight);
+    rectMode(CENTER); //Rect draws from center now instead of left top corner
+    fill(flColor);
+    rect(xPos, yPos, bWidth, bHeight, roundness);
     
     textSize(25);
     fill(10);
-    textAlign(CENTER, CENTER);
+    textAlign(CENTER, CENTER); //Centers text to middle of button
     text(text, xPos, yPos);
   }
   
@@ -79,13 +71,35 @@ class Button
     }
   }
   
-  void unpressButton()
+  void buttonClicked()
   {
-    pressed = false;
+    flColor = lerpColor(baseFlColor, color(0), 0.4);
+    pressed = true;
   }
   
-  void changeColor(color oC, color fC)
+  boolean buttonReleased()
   {
-    olColor = oC; flColor = fC; baseFlColor = fC;
+    flColor = baseFlColor; 
+    
+    if(pressed && isButtonUnderMouse())
+    {
+      pressed = false;
+      return true;
+    }
+    else
+    {
+      pressed = false;
+      return false;
+    }
+  }
+  
+  void changeColor(color newOC, color newFC)
+  {
+    olColor = newOC; flColor = newFC; baseFlColor = newFC;
+  }
+  
+  void changeRoundness(float newRoundness)
+  {
+    roundness = newRoundness;
   }
 }

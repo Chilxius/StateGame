@@ -3,19 +3,22 @@ class CharacterEditorState implements GameState
   ArrayList<Button> buttons = new ArrayList<Button>();
   //Character character;
   
-  color hairColor;
-  color skinColor;
-  color clothesColor;
+  //color hairColor;
+  //color skinColor;
+  //color clothesColor;
+  
+  CharacterEditorState()
+  {
+    buttons.add(new Button("Back", 100, height - 75));
+    buttons.add(new Button("Reset", 300, height - 75));
+    buttons.add(new Button("Save", 500, height - 75));
+  }
   
   void update( GameData data ){}
   
   void display( GameData data )
   {
     background(10);
-
-    buttons.add(new Button("Back", 100, height - 75));
-    buttons.add(new Button("Reset", 300, height - 75));
-    buttons.add(new Button("Save", 500, height - 75));
     
     //Draws all buttons
     for(int i = 0; i < buttons.size(); i++)
@@ -28,30 +31,41 @@ class CharacterEditorState implements GameState
   
   void mouseReact( StateManager manager, boolean pressed ) 
   {
-    if(pressed)
+    for(int i = 0; i < buttons.size(); i++)
     {
-      for(int i = 0; i < buttons.size(); i++)
+      Button b = buttons.get(i);
+      
+      if(b.isButtonUnderMouse())
       {
-        if(buttons.get(i).isButtonUnderMouse() && i == 0)
+        if (pressed)
         {
-          buttons.get(i).unpressButton();
-          changeState(manager, new TitleScreenState());
-        }
-        else if(buttons.get(i).isButtonUnderMouse() && i == 2)
-        {
-          buttons.get(i).unpressButton();
-          //character = new character();
+          b.buttonClicked();
         }
         else
         {
-          buttons.get(i).unpressButton();
-          //character = new character( (INSERT) hairStyle, (INSERT) clothesColor color hairColor, color skinColor, color clothesColor);
+          if(b.buttonReleased())
+          {
+            if(i == 0)
+            {
+              changeState(manager, new TitleScreenState());
+            }
+            else if(i == 1)
+            {
+              //character = new character();
+            }
+            else
+            {
+              //character = new character( (INSERT) hairStyle, (INSERT) clothesColor color hairColor, color skinColor, color clothesColor);
+            }
+          }
         }
       }
-    }
-    else
-    {
-      
+      else if (!pressed) 
+      {
+        // Safety Catch: If the mouse was dragged off the button and released, 
+        // make sure the button state resets to unpressed.
+        b.buttonReleased();
+      }
     }
   }
    

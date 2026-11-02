@@ -1,17 +1,27 @@
 class CharacterEditorState implements GameState
 {
+  ArrayList<Button> buttons = new ArrayList<Button>();
+  //Character character;
+  
+  color hairColor;
+  color skinColor;
+  color clothesColor;
+  
   void update( GameData data ){}
   
   void display( GameData data )
   {
     background(10);
-    noStroke();
-    fill(240);
-    circle(100, height - 100, 30);
+
+    buttons.add(new Button("Back", 100, height - 75));
+    buttons.add(new Button("Reset", 300, height - 75));
+    buttons.add(new Button("Save", 500, height - 75));
     
-    textSize(7);
-    fill(10);
-    text("Back", 100, height - 100);
+    //Draws all buttons
+    for(int i = 0; i < buttons.size(); i++)
+    {
+      buttons.get(i).drawButton();
+    }
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}
@@ -20,10 +30,28 @@ class CharacterEditorState implements GameState
   {
     if(pressed)
     {
-      if( dist(mouseX, mouseY, 100, height - 100) < 30)
+      for(int i = 0; i < buttons.size(); i++)
       {
-        changeState(manager, new TitleScreenState());
+        if(buttons.get(i).isButtonUnderMouse() && i == 0)
+        {
+          buttons.get(i).unpressButton();
+          changeState(manager, new TitleScreenState());
+        }
+        else if(buttons.get(i).isButtonUnderMouse() && i == 2)
+        {
+          buttons.get(i).unpressButton();
+          //character = new character();
+        }
+        else
+        {
+          buttons.get(i).unpressButton();
+          //character = new character( (INSERT) hairStyle, (INSERT) clothesColor color hairColor, color skinColor, color clothesColor);
+        }
       }
+    }
+    else
+    {
+      
     }
   }
    

@@ -38,16 +38,7 @@ class IntroScreenState implements GameState
       manager.data.character().setHairColor( color( int(random(255)), int(random(255)), int(random(255)) ) );
     if( key == 'g' && pressed )
       manager.data.character().setClothStyle( int(random(5)) );
-      
-    //ALSO TESTING
-    if( pressed && keyCode == LEFT )
-      manager.data.mapX--;
-    if( pressed && keyCode == RIGHT )
-      manager.data.mapX++;
-    if( pressed && keyCode == UP )
-      manager.data.mapY--;
-    if( pressed && keyCode == DOWN )
-      manager.data.mapY++;
+
   }
   
   void mouseReact( StateManager manager, boolean pressed )

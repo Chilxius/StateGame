@@ -46,6 +46,7 @@ class GameData
     
     //Map images
     mapImages.put( "stone wall", loadImage( "wall.png" ) );
+    mapImages.put( "door", loadImage( "doorDouble.png" ) );
   }
   
   public PImage hairStyle( int i )

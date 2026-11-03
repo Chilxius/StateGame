@@ -17,11 +17,11 @@ class Map
   public void display(int x, int y)
   {
     push();
-    rectMode(CORNER);
-    imageMode(CORNER);
+    rectMode(CENTER);
+    imageMode(CENTER);
     for( int i = 0; i < tiles.length; i++ )
       for( int j = 0; j < tiles[0].length; j++ )
-        tiles[i][j].display(i*50+x*50,j*50+y*50);
+        tiles[i][j].display(width/2+i*50-x*50,height/2+j*50-y*50);
     pop();
   }
 }

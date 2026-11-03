@@ -15,6 +15,7 @@ class GameData
   private Character theCharacter;
   
   private Map map;
+  //Navigation data (could be assumed by character)
   private int mapX, mapY;
   
   GameData()
@@ -22,8 +23,8 @@ class GameData
     loadImages();
     theCharacter = new Character();
     
-    mapX = 0;
-    mapY = 0;
+    mapX = 2;
+    mapY = 2;
     map = new Map(mapImages);
   }
   

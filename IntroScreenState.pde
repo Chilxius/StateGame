@@ -13,9 +13,6 @@ class IntroScreenState implements GameState
   {
     background(0);
     
-    //TESTING
-    data.map.display( data.mapX, data.mapY );
-    
     fill(255);
     textSize(75);
     textAlign(CENTER);
@@ -28,19 +25,29 @@ class IntroScreenState implements GameState
   
   void keyReact( StateManager manager, boolean pressed )
   {
+    //TESTING
     if( key == 'f' && pressed )
       manager.data.character().setFaceStyle( int(random(5)) );
     if( key == 'c' && pressed )
       manager.data.character().setClothColor( color( int(random(255)), int(random(255)), int(random(255)) ) );
+    if( key == 's' && pressed )
+      manager.data.character().setSkinColor( color( int(random(255)), int(random(255)), int(random(255)) ) );
+    if( key == 'h' && pressed )
+      manager.data.character().setHairStyle( int(random(5)) );
+    if( key == 'd' && pressed )
+      manager.data.character().setHairColor( color( int(random(255)), int(random(255)), int(random(255)) ) );
+    if( key == 'g' && pressed )
+      manager.data.character().setClothStyle( int(random(5)) );
       
+    //ALSO TESTING
     if( pressed && keyCode == LEFT )
-      manager.data.mapX++;
-    if( pressed && keyCode == RIGHT )
       manager.data.mapX--;
+    if( pressed && keyCode == RIGHT )
+      manager.data.mapX++;
     if( pressed && keyCode == UP )
-      manager.data.mapY++;
-    if( pressed && keyCode == DOWN )
       manager.data.mapY--;
+    if( pressed && keyCode == DOWN )
+      manager.data.mapY++;
   }
   
   void mouseReact( StateManager manager, boolean pressed )

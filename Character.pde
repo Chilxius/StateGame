@@ -4,6 +4,7 @@ class Character
   int GP = 0;   //money
   int LP = 0;   //lockpicks
   int rope = 0; //spools of rope
+  PVector position = new PVector(2,2);
   
   private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));
   private int hairStyle = int(random(5));
@@ -12,18 +13,22 @@ class Character
   private color clothColor = color(int(random(255)),int(random(255)),int(random(255)));
   private int clothStyle = int(random(5));
   
-  public void display(GameData data, int x, int y)
+  public void display(GameData data, int x, int y, int size)
   {
     noTint();
-    image(data.browns(),x,y,150,150);
+    image(data.browns(),x,y,size,size);
     tint(clothColor);
-    image(data.clothStyle(clothStyle),x,y,150,150);
+    image(data.clothStyle(clothStyle),x,y,size,size);
     tint(skinColor);
-    image(data.skin(),x,y,150,150);
+    image(data.skin(),x,y,size,size);
     noTint();
-    image(data.faceStyle(faceStyle),x,y,150,150);
+    image(data.faceStyle(faceStyle),x,y,size,size);
     tint(hairColor);
-    image(data.hairStyle(hairStyle),x,y,150,150);
+    image(data.hairStyle(hairStyle),x,y,size,size);
+  }
+  public void display(GameData data, int x, int y)
+  {
+    display(data, x, y, data.defaultCharSize);
   }
   
   //Our changers

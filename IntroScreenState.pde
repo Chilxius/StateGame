@@ -18,7 +18,7 @@ class IntroScreenState implements GameState
     textAlign(CENTER);
     text("BEST GAME EVAR",width/2,height/2);
     
-    data.character().display(data, width/2, height/2-200);
+    //data.character().display(data, width/2, height/2-200);
     
     startButton.drawButton();
   }

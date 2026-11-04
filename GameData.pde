@@ -47,7 +47,18 @@ class GameData
     
     //Map images
     mapImages.put( "stone wall", loadImage( "wall.png" ) );
-    mapImages.put( "door", loadImage( "doorDouble.png" ) );
+    mapImages.put( "door", loadImage( "doorLocked.png" ) );
+    mapImages.put( "sealed door", loadImage( "doorSealed.png" ) );
+    mapImages.put( "door frame", loadImage( "doorOpen.png" ) );
+    mapImages.put( "stone button", loadImage( "buttonStone.png" ) );
+    mapImages.put( "pushed stone button", loadImage( "buttonStonePressed.png" ) );
+    mapImages.put( "wood button", loadImage( "buttonWood.png" ) );
+    mapImages.put( "pushed wood button", loadImage( "buttonWoodPressed.png" ) );
+  }
+  
+  public PVector charPos()
+  {
+    return character().position;
   }
   
   public PImage hairStyle( int i )

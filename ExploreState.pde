@@ -3,7 +3,7 @@ class ExploreState implements GameState
   void update( GameData data ){}
   void display( GameData data )
   {
-    data.map.display( data.mapX, data.mapY );
+    data.map.display( int(data.charPos().x), int(data.charPos().y) );
     data.character().display( data, width/2, height/2 );
   }
   void keyReact( StateManager manager, boolean pressed )
@@ -16,16 +16,19 @@ class ExploreState implements GameState
   
   void attemptMove( StateManager manager, int dir )
   {
-    int destX = manager.data.mapX, destY = manager.data.mapY;
-    if( dir == LEFT ) destX--;
-    if( dir == RIGHT) destX++;
-    if( dir == UP   ) destY--;
-    if( dir == DOWN ) destY++;
+    PVector destPos = new PVector(manager.data.charPos().x,manager.data.charPos().y);
+    if( dir == LEFT ) destPos.x--;
+    if( dir == RIGHT) destPos.x++;
+    if( dir == UP   ) destPos.y--;
+    if( dir == DOWN ) destPos.y++;
     
-    if( manager.data.map.tiles[destX][destY].pathable() )
+    if( manager.data.map.tiles[int(destPos.x)][int(destPos.y)].pathable() )
     {
-      manager.data.mapX = destX;
-      manager.data.mapY = destY;
+      if( manager.data.map.tiles[int(destPos.x)][int(destPos.y)].isButton() )
+      {
+        manager.data.map.openMatchingDoor( destPos );
+      }
+      manager.data.character().position = destPos;
     }
   }
   

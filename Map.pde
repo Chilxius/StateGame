@@ -24,4 +24,18 @@ class Map
         tiles[i][j].display(width/2+i*50-x*50,height/2+j*50-y*50);
     pop();
   }
+  
+  public void openMatchingDoor( PVector pos )
+  {
+    char clearCode = char(int(tiles[int(pos.x)][int(pos.y)].code) - 32);
+    println( clearCode );
+    for( int i = 0; i < 100; i++ )
+      for( int j = 0; j < 100; j++ )
+        if( tiles[i][j].code == clearCode )
+        {
+          tiles[i][j].clearTile();
+          tiles[int(pos.x)][int(pos.y)].clearTile();
+          return;
+        }
+  }
 }

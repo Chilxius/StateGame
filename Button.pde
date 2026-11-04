@@ -10,7 +10,7 @@ class Button
   private color baseFlColor; //Keeps the orginal base color safe.
   
   //Constructors (Note: oC is outline color while fC is fill color)
-  public Button(float x, float y, float w, float h, color oC, color fC)
+  public Button(float x, float y, float w, float h, color fC, color oC)
   {
     xPos = x; yPos = y;
     bWidth = w; bHeight = h;
@@ -71,13 +71,13 @@ class Button
     }
   }
   
-  void buttonClicked()
+  private void buttonClicked()
   {
     flColor = lerpColor(baseFlColor, color(0), 0.4);
     pressed = true;
   }
   
-  boolean buttonReleased()
+  private boolean buttonReleased()
   {
     flColor = baseFlColor; 
     
@@ -118,9 +118,9 @@ class Button
     }
     
     return false; //Catch-all return
-}
+  }
   
-  void changeColor(color newOC, color newFC)
+  void changeColor(color newFC, color newOC)
   {
     olColor = newOC; flColor = newFC; baseFlColor = newFC;
   }

@@ -93,6 +93,33 @@ class Button
     }
   }
   
+  boolean isButtonUsed(boolean pressed) 
+  {
+    if (isButtonUnderMouse()) 
+    {
+        if (pressed) 
+        {
+            buttonClicked();
+        } 
+        else 
+        {
+            if (buttonReleased()) //If mouse is over the button but NOT pressed
+            {
+                return true;
+            }
+        }
+    } 
+    else 
+    {
+        if (!pressed) //If the mouse is NOT over the button and the click was released
+        {
+            buttonReleased(); // Un-press button
+        }
+    }
+    
+    return false; //Catch-all return
+}
+  
   void changeColor(color newOC, color newFC)
   {
     olColor = newOC; flColor = newFC; baseFlColor = newFC;

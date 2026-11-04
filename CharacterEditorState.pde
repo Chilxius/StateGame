@@ -35,36 +35,9 @@ class CharacterEditorState implements GameState
     {
       Button b = buttons.get(i);
       
-      if(b.isButtonUnderMouse())
+      if(b.isButtonUsed(pressed) && i == 0) 
       {
-        if (pressed)
-        {
-          b.buttonClicked();
-        }
-        else
-        {
-          if(b.buttonReleased())
-          {
-            if(i == 0)
-            {
-              changeState(manager, new TitleScreenState());
-            }
-            else if(i == 1)
-            {
-              //character = new character();
-            }
-            else
-            {
-              //character = new character( (INSERT) hairStyle, (INSERT) clothesColor color hairColor, color skinColor, color clothesColor);
-            }
-          }
-        }
-      }
-      else if (!pressed) 
-      {
-        // Safety Catch: If the mouse was dragged off the button and released, 
-        // make sure the button state resets to unpressed.
-        b.buttonReleased();
+        changeState(manager, new TitleScreenState());
       }
     }
   }

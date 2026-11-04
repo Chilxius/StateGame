@@ -38,25 +38,12 @@ class IntroScreenState implements GameState
       manager.data.character().setHairColor( color( int(random(255)), int(random(255)), int(random(255)) ) );
     if( key == 'g' && pressed )
       manager.data.character().setClothStyle( int(random(5)) );
-
   }
   
   void mouseReact( StateManager manager, boolean pressed )
   {    
-    if( startButton.isButtonUnderMouse() ) //If mouse over button
-    {
-      if( pressed )  //If button being pressed
-        startButton.buttonClicked(); //Button sets 'pressed' to true
-      else //If being released
-      {
-        if( startButton.buttonReleased() ) //Un-press button (returns True if under mouse, meaning a complete click event has happened)
-          changeState( manager, new TitleScreenState() ); //Change state
-      }
-    }
-    else if( !pressed ) //If mouse button released
-    {
-      startButton.buttonReleased(); //Un-press button
-    }
+    if( startButton.isButtonUsed(pressed) )
+      changeState( manager, new TitleScreenState() );
   }
   
   void changeState( StateManager manager, GameState newState )

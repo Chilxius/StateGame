@@ -13,6 +13,7 @@ class GameData
   HashMap<String,PImage> mapImages = new HashMap<String,PImage>();
   
   private Character theCharacter;
+  int defaultCharSize = 50;
   
   private Map map;
   //Navigation data (could be assumed by character)

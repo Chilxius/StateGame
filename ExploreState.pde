@@ -4,8 +4,7 @@ class ExploreState implements GameState
   void display( GameData data )
   {
     data.map.display( data.mapX, data.mapY );
-    fill(200,0,0);
-    circle(width/2,height/2,50);
+    data.character().display( data, width/2, height/2 );
   }
   void keyReact( StateManager manager, boolean pressed )
   {
@@ -19,8 +18,8 @@ class ExploreState implements GameState
   {
     int destX = manager.data.mapX, destY = manager.data.mapY;
     if( dir == LEFT ) destX--;
-    if( dir == RIGHT )destX++;
-    if( dir == UP )   destY--;
+    if( dir == RIGHT) destX++;
+    if( dir == UP   ) destY--;
     if( dir == DOWN ) destY++;
     
     if( manager.data.map.tiles[destX][destY].pathable() )

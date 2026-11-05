@@ -35,7 +35,7 @@ class Map
         {
           tiles[i][j].clearTile();
           tiles[int(pos.x)][int(pos.y)].clearTile();
-          return;
+          //return;
         }
   }
 }

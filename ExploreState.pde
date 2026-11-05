@@ -21,16 +21,30 @@ class ExploreState implements GameState
       if( isDirection(key) )
         attemptMove( manager, key );
       if( key == ' ' )
-        checkInteractions( manager.data.character() );
+        checkInteractions( manager.data );
     }
   }
   
-  private void checkInteractions( Character c )
+  private void checkInteractions( GameData d )
   {
-    int x = int(c.position.x);
-    int y = int(c.position.y);
+    int x = int(d.character().position.x);
+    int y = int(d.character().position.y);
     
-    //check all surrounding tiles
+    for( int i = x-1; i <= x+1; i++ )
+      for( int j = y-1; j <= y+1; j++ )
+        if( i >= 0 && j >= 0 && i < 100 && j < 100 )  //Ignore if outside map
+          if( d.map.tiles[i][j].cleared == false )  //Check if not cleared (walls and floors start cleared)
+          {
+            interactWith( d, i, j, d.map.tiles[i][j].code );
+            return;
+          }
+  }
+  
+  private void interactWith( GameData d, int x, int y, char code )
+  {
+    //change state to appropriate mini-game
+    //send that game the coordiantes so it can clear the tile
+    println( code );
   }
   
   private boolean isDirection( char c )

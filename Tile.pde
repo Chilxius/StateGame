@@ -14,7 +14,8 @@ class Tile
     if( c == '#' )
     {
       tileColor = color(0,0,0,0);
-      tileImage = images.get("stone wall");
+      tileImage = clearedImage = images.get("stone wall");
+      cleared = true;
       pathable = false;
     }
     else if( c == '@' )
@@ -27,7 +28,7 @@ class Tile
     else if( c >= 65 && c <= 90 )
     {
       tileColor = color(100);
-      tileImage = images.get("sealed door");
+      tileImage = images.get("portcullis");
       clearedImage = images.get("door frame");
       pathable = false;
     }
@@ -42,6 +43,7 @@ class Tile
     {
       tileColor = color(100);
       pathable = true;
+      cleared = true;
     }
   }
   
@@ -50,14 +52,14 @@ class Tile
   {
     stroke(255);
     fill( tileColor );
-    rect( x, y, 50, 50 );
+    rect( x, y, 64, 64 );
     if( tileImage != null )
     {
       noTint();
       if( cleared )
-        image(clearedImage,x,y,50,50);
+        image(clearedImage,x,y,64,64);
       else
-        image(tileImage,x,y,50,50);
+        image(tileImage,x,y,64,64);
     }
   }
   

@@ -13,19 +13,19 @@ class GameData
   HashMap<String,PImage> mapImages = new HashMap<String,PImage>();
   
   private Character theCharacter;
-  int defaultCharSize = 50;
+  int defaultCharSize = 64;
   
   private Map map;
   //Navigation data (could be assumed by character)
-  private int mapX, mapY;
+  //private int mapX, mapY;
   
   GameData()
   {
     loadImages();
     theCharacter = new Character();
     
-    mapX = 2;
-    mapY = 2;
+    //mapX = 2;
+    //mapY = 2;
     map = new Map(mapImages);
   }
   
@@ -54,6 +54,7 @@ class GameData
     mapImages.put( "pushed stone button", loadImage( "buttonStonePressed.png" ) );
     mapImages.put( "wood button", loadImage( "buttonWood.png" ) );
     mapImages.put( "pushed wood button", loadImage( "buttonWoodPressed.png" ) );
+    mapImages.put( "portcullis", loadImage( "portcullis.png" ) );
   }
   
   public PVector charPos()

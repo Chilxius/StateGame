@@ -5,7 +5,7 @@ class GameData
   private PImage faceStyles[] = new PImage[5];
   private PImage browns, skin;
   
-  PImage introPic;
+  PImage introPic, menuPic;
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
   
@@ -61,6 +61,7 @@ class GameData
     mapImages.put( "portcullis", loadImage( "portcullis.png" ) );
     
     introPic = loadImage( "fatRat.png" );
+    menuPic = loadImage( "whiteRat.png" ); menuPic.resize(100,0);
     
     creditPics.put( "ritchie", loadImage("RedTrollz.png") );
     creditPics.get( "ritchie" ).resize(100,0);

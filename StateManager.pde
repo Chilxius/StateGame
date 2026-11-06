@@ -24,6 +24,7 @@ class StateManager
     //state = new CharacterEditorState();
     //state = new TitleScreenState();
     //state = new ExploreState();
+    //state = new MenuState();
   }
   
   void display()

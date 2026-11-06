@@ -1,10 +1,19 @@
 class ExploreState implements GameState
 {
+  Button menuButton;
+  
+  ExploreState()
+  {
+    menuButton = new Button( "Menu", 100, 100, 75, 50 );
+  }
+  
   void update( GameData data ){}
   void display( GameData data )
   {
     data.map.display( int(data.charPos().x), int(data.charPos().y) );
     data.character().display( data, width/2, height/2 );
+    
+    menuButton.drawButton();
   }
   void keyReact( StateManager manager, boolean pressed )
   {
@@ -70,6 +79,11 @@ class ExploreState implements GameState
     }
   }
   
-  void mouseReact( StateManager manager, boolean pressed ){}
+  void mouseReact( StateManager manager, boolean pressed )
+  {
+    if( menuButton.isButtonUsed(pressed) )
+      manager.setState( new MenuState() );
+  }
+  
   void changeState( StateManager manager, GameState newState ){manager.setState( newState );}
 }

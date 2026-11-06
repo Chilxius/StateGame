@@ -63,8 +63,11 @@ class GameData
     introPic = loadImage( "fatRat.png" );
     
     creditPics.put( "ritchie", loadImage("RedTrollz.png") );
+    creditPics.get( "ritchie" ).resize(100,0);
     creditPics.put( "carter", loadImage("FancierReaper.png") );
+    creditPics.get( "carter" ).resize(100,0);
     creditPics.put( "lillian", loadImage("DarkAngler.png") );
+    creditPics.get( "lillian" ).resize(100,0);
   }
   
   public PVector charPos()

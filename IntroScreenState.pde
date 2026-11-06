@@ -2,25 +2,44 @@ class IntroScreenState implements GameState
 {
   Button startButton;
   
-  IntroScreenState()
+  IntroScreenState( GameData data )
   {
     startButton = new Button("Start Game", width/2, height-200, 150,100);
+    
+    background(100);
+    
+    drawGradient();
+    
+    
+    //image( data.introPic, width/2, height/3, 300, 300 );
+    fill(255);
+    textSize(75);
+    textAlign(CENTER);
+    text("BEST GAME EVAR",width/2,height/2);
   }
   
   void update( GameData data ) {}
   
   void display( GameData data )
   {
-    background(0);
     
-    fill(255);
-    textSize(75);
-    textAlign(CENTER);
-    text("BEST GAME EVAR",width/2,height/2);
+    image( data.introPic, width/2, height/3-50, 300, 300 );
+    
+    //image( data.creditPics.get("ritchie"), width/2, height/3-50, 300, 300 );
     
     //data.character().display(data, width/2, height/2-200);
     
     startButton.drawButton();
+  }
+  
+  private void drawGradient()
+  {
+    noStroke();
+    for( int i = 50; i>=0; i -- )
+    {
+      fill( 100-i*2, 0, 200-i*4, 200 );
+      circle( width/2, height/2, width/30*i );
+    }
   }
   
   void keyReact( StateManager manager, boolean pressed )

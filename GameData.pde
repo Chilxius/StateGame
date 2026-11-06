@@ -5,6 +5,10 @@ class GameData
   private PImage faceStyles[] = new PImage[5];
   private PImage browns, skin;
   
+  PImage introPic;
+  
+  HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
+  
   //HashMap helps to organize the images, and allows them to be
   // passed to Map() while the GameData and StateManager do not
   // yet exist.
@@ -55,6 +59,12 @@ class GameData
     mapImages.put( "wood button", loadImage( "buttonWood.png" ) );
     mapImages.put( "pushed wood button", loadImage( "buttonWoodPressed.png" ) );
     mapImages.put( "portcullis", loadImage( "portcullis.png" ) );
+    
+    introPic = loadImage( "fatRat.png" );
+    
+    creditPics.put( "ritchie", loadImage("RedTrollz.png") );
+    creditPics.put( "carter", loadImage("FancierReaper.png") );
+    creditPics.put( "lillian", loadImage("DarkAngler.png") );
   }
   
   public PVector charPos()

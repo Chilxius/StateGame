@@ -10,27 +10,34 @@ class CharacterEditorState implements GameState
     buttons.add(new Button("Back", 200, height - 75));
     buttons.add(new Button("Reset", 400, height - 75));
     
+    print(buttons.size()  + " ");
+    
     //Number of buttons for color is 14 while styles is 60
     CreateLeftButtons(skinPalette, 250);
     CreateLeftButtons(hairPalette, 450);
     CreateLeftButtons(clothesPalette, 650);
     
+    print(buttons.size() + " ");
+    
     CreateRightButtons(250);
     CreateRightButtons(450);
     CreateRightButtons(650);
+    
+    print(buttons.size() + " ");
   }
   
   void update( GameData data ){}
   
   void display( GameData data )
   {
-    background(30);
+    background(0);
     
     //Draws all buttons
     for(int i = 0; i < buttons.size(); i++)
     {
       buttons.get(i).drawButton();
     }
+    
     fill(255);
     textAlign(CENTER, CENTER); //Centers text
     
@@ -89,9 +96,8 @@ class CharacterEditorState implements GameState
     int k = 1;
     for(int j = 1240; j <= 1465; j += 75)
     {
-      String str = str(k);
-      buttons.add(new Button("" + k, color(255), j, yPos, 40, 40, color(50), color(150)));
-      buttons.add(new Button("" + (k+2), color(255), j, yPos + 75, 40, 40, color(50), color(150)));
+      buttons.add(new Button("" + k, j, yPos, 40, 40, color(50), color(150), color(255)));
+      buttons.add(new Button("" + (k+2), j, yPos + 75, 40, 40, color(50), color(150), color(255)));
       k++;
     }
   }

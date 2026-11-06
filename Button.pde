@@ -7,9 +7,22 @@ class Button
   private float xPos, yPos;
   private float bWidth, bHeight; //Width and Height. b means button.
   private color olColor, flColor; //ol means outline while fl means fill.
+  private color textColor; //Keeps the orginal base color safe.
   private color baseFlColor; //Keeps the orginal base color safe.
   
   //Constructors (Note: oC is outline color while fC is fill color)
+  public Button(String t, float x, float y, float w, float h, color fC, color oC, color tC)
+  {
+    text = t;
+    textColor = tC;
+    xPos = x; yPos = y;
+    bWidth = w; bHeight = h;
+    olColor = oC; flColor = fC; baseFlColor = fC;
+    
+    roundness = 10;
+    pressed = false;
+  }
+  
   public Button(float x, float y, float w, float h, color fC, color oC)
   {
     xPos = x; yPos = y;
@@ -19,6 +32,7 @@ class Button
     text = "";
     roundness = 10;
     pressed = false;
+    textColor = color(10);
   }
   
   public Button(String t, float x, float y, float w, float h)
@@ -29,6 +43,7 @@ class Button
     
     roundness = 10;
     pressed = false;
+    textColor = color(10);
     olColor = color(0); flColor = color(255); baseFlColor = flColor;
   }
   
@@ -39,6 +54,7 @@ class Button
     
     roundness = 10;
     pressed = false;
+    textColor = color(10);
     bWidth = 100; bHeight = 50;
     olColor = color(0); flColor = color(255); baseFlColor = flColor;
   }
@@ -52,7 +68,7 @@ class Button
     rect(xPos, yPos, bWidth, bHeight, roundness);
     
     textSize(25);
-    fill(10);
+    fill(textColor);
     textAlign(CENTER, CENTER); //Centers text to middle of button
     text(text, xPos, yPos);
   }

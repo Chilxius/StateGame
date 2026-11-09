@@ -4,11 +4,8 @@ class Button
   private String text;
   private boolean pressed;
   private float roundness;
-  private float xPos, yPos;
-  private float bWidth, bHeight; //Width and Height. b means button.
-  private color olColor, flColor; //ol means outline while fl means fill.
-  private color textColor; //Keeps the orginal base color safe.
-  private color baseFlColor; //Keeps the orginal base color safe.
+  private float xPos, yPos, bWidth, bHeight; //b means button.
+  private color olColor, flColor, baseFlColor, textColor; //ol means outline while fl means fill.
   
   //Constructors (Note: oC is outline color while fC is fill color)
   public Button(String t, float x, float y, float w, float h, color fC, color oC, color tC)
@@ -59,7 +56,7 @@ class Button
     olColor = color(0); flColor = color(255); baseFlColor = flColor;
   }
   
-  //Methods
+  //Draws the button
   void drawButton()
   {
     stroke(olColor);
@@ -73,6 +70,7 @@ class Button
     text(text, xPos, yPos);
   }
   
+  //Check for if the button is under the mouse
   boolean isButtonUnderMouse()
   {
     //Check for if mouse inside the boundaries of a button object
@@ -87,12 +85,14 @@ class Button
     }
   }
   
+  //Clicks button so it changes color
   private void buttonClicked()
   {
     flColor = lerpColor(baseFlColor, color(0), 0.4);
     pressed = true;
   }
   
+  //Releases button so its not always pressed down
   private boolean buttonReleased()
   {
     flColor = baseFlColor; 
@@ -109,6 +109,7 @@ class Button
     }
   }
   
+  //Methods to report if the button is actually used or not
   boolean isButtonUsed(boolean pressed) 
   {
     if (isButtonUnderMouse()) 
@@ -136,13 +137,11 @@ class Button
     return false; //Catch-all return
   }
   
-  void changeColor(color newFC, color newOC)
-  {
-    olColor = newOC; flColor = newFC; baseFlColor = newFC;
-  }
+  //Getter Methods
+  color getFillColor() { return baseFlColor; }
+  color getColor() { return olColor; }
   
-  void changeRoundness(float newRoundness)
-  {
-    roundness = newRoundness;
-  }
+  //Changer Methods
+  void changeColor(color fC, color oC) { olColor = oC; flColor = fC; baseFlColor = fC; }
+  void changeRoundness(float newRoundness) { roundness = newRoundness; }
 }

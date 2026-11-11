@@ -140,6 +140,7 @@ class Button
   //Getter Methods
   color getFillColor() { return baseFlColor; }
   color getColor() { return olColor; }
+  String getText() { return text; }
   
   //Changer Methods
   void changeColor(color fC, color oC) { olColor = oC; flColor = fC; baseFlColor = fC; }

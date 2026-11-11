@@ -6,6 +6,16 @@ class Character
   int rope = 0; //spools of rope
   PVector position = new PVector(2,2);
   
+  Character()
+  {
+    setHairStyle(1);
+    setFaceStyle(1);
+    setClothStyle(1);
+    setHairColor(#FFFFFF);
+    setSkinColor(color(190,170,130));
+    setClothColor(#F0F0F0);
+  }
+  
   private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));
   private int hairStyle = int(random(5));
   private color skinColor = color(int(random(255)),int(random(255)),int(random(255)));
@@ -38,4 +48,14 @@ class Character
   public void setSkinColor(color skinDye)         {skinColor = skinDye;}
   public void setClothStyle(int clothChange) {clothStyle = clothChange;}
   public void setClothColor(color clothDye)     {clothColor = clothDye;}
+  
+  public void resetDefault()
+  {
+    setHairStyle(1);
+    setFaceStyle(1);
+    setClothStyle(1);
+    setHairColor(#FFFFFF);
+    setSkinColor(color(190,170,130));
+    setClothColor(#F0F0F0);
+  }
 }

@@ -25,7 +25,7 @@ class CharacterEditorState implements GameState
   void display( GameData data )
   {
     background(0);
-    
+    image(data.stagePic, width/2 + 110, height/2 + 20, 500, 580);
     //Draws all buttons
     for(int i = 0; i < buttons.size(); i++) { buttons.get(i).drawButton(); }
     
@@ -39,7 +39,7 @@ class CharacterEditorState implements GameState
     text("Skin", 303, 200); text("Hair", 303, 400); text("Clothes", 305, 600);
     text("Face", 1352, 200); text("Hair", 1352, 400); text("Clothes", 1352, 600);
     
-    data.character().display(data, width/2 + 110, height/2 - 5, 400);
+    data.character().display(data, width/2 + 110, height/2 - 20, 400);
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}
@@ -53,7 +53,7 @@ class CharacterEditorState implements GameState
       if(b.isButtonUsed(pressed))
       {
         if(i == 0) 
-          changeState(manager, new TitleScreenState());
+          changeState(manager, manager.previousState);
         else if(i == 1)
           manager.data.theCharacter.resetDefault();
         else if(i >= 2 && i <= 15)

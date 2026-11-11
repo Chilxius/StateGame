@@ -50,4 +50,21 @@ Character:
       face
       clothes
       clothes color
+      
+CREDITS INFO
+Mr. Ritchie
+  Exploration State
+  Game Data
+  Map Info
+  Pause Menu
+  The State Manager
+  Tiles(Pieces of Map)
+Carter
+  Character Default and Foundation
+  Credits Screen
+  Title Screen
+  Lockpick Game
+Lillian
+  Button
+  Character Editor Screen
 */

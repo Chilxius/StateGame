@@ -14,6 +14,8 @@ class CharacterEditorState implements GameState
   
   CharacterEditorState()
   {
+      
+    
     buttons.add(new Button("Back", 200, height - 75));
     buttons.add(new Button("Reset", 400, height - 75));
     
@@ -24,6 +26,12 @@ class CharacterEditorState implements GameState
   
   void display( GameData data )
   {
+    //TEMPORARY TRIAL TO FIX POSITIONING
+    float scaleX = width / 1536.0;
+    float scaleY = height / 960.0;
+  
+    scale(scaleX, scaleY);
+    
     background(0);
     noTint();
     image(data.stagePic, width/2 + 110, height/2 + 20, 500, 580);

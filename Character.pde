@@ -11,9 +11,9 @@ class Character
     setHairStyle(1);
     setFaceStyle(1);
     setClothStyle(1);
-    setHairColor(#FFFFFF);
-    setSkinColor(color(190,170,130));
-    setClothColor(#F0F0F0);
+    setHairColor(#EBEFF5);
+    setSkinColor(#E5B288);
+    setClothColor(#4F6D8A);
   }
   
   private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));

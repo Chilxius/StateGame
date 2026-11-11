@@ -139,7 +139,7 @@ class Button
   
   //Getter Methods
   color getFillColor() { return baseFlColor; }
-  color getColor() { return olColor; }
+  color getOutlineColor() { return olColor; }
   String getText() { return text; }
   
   //Changer Methods

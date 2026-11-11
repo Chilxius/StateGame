@@ -6,6 +6,7 @@ class GameData
   private PImage browns, skin;
   
   PImage introPic, menuPic;
+  PImage stagePic;
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
   
@@ -62,6 +63,7 @@ class GameData
     
     introPic = loadImage( "fatRat.png" );
     menuPic = loadImage( "whiteRat.png" ); menuPic.resize(100,0);
+    stagePic = loadImage( "stage.png" ); stagePic.resize(500,0);
     
     creditPics.put( "ritchie", loadImage("RedTrollz.png") );
     creditPics.get( "ritchie" ).resize(100,0);

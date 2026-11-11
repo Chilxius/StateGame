@@ -1,8 +1,8 @@
 class GameData
 {
-  private PImage hairStyles[] = new PImage[5];
-  private PImage clothStyles[] = new PImage[5];
-  private PImage faceStyles[] = new PImage[5];
+  private PImage hairStyles[] = new PImage[8];
+  private PImage clothStyles[] = new PImage[8];
+  private PImage faceStyles[] = new PImage[8];
   private PImage browns, skin;
   
   PImage introPic, menuPic;
@@ -41,7 +41,7 @@ class GameData
   
   private void loadImages()
   {
-    for( int i = 0; i < 5; i++ )
+    for( int i = 0; i < 8; i++ )
     {
       hairStyles[i] = loadImage( "hair"+i+".png" );
       faceStyles[i] = loadImage( "face"+i+".png" );

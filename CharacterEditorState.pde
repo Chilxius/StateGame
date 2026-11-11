@@ -55,27 +55,19 @@ class CharacterEditorState implements GameState
         if(i == 0) 
           changeState(manager, new TitleScreenState());
         else if(i == 1)
-        {
-          //Reset button - To be coded
-        }
+          manager.data.theCharacter.resetDefault();
         else if(i >= 2 && i <= 15)
           manager.data.theCharacter.setSkinColor(b.getFillColor());
         else if(i >= 16 && i <= 23)
-        {
           manager.data.theCharacter.setFaceStyle(Integer.parseInt(b.getText()));
-        }
         else if(i >= 24 && i <= 37)
           manager.data.theCharacter.setHairColor(b.getFillColor());
         else if(i >= 38 && i <= 45)
-        {
           manager.data.theCharacter.setHairStyle(Integer.parseInt(b.getText()));
-        }
         else if(i >= 46 && i <= 59)
           manager.data.theCharacter.setClothColor(b.getFillColor());
         else if(i >= 60 && i <= 67)
-        {
           manager.data.theCharacter.setClothStyle(Integer.parseInt(b.getText()));
-        }
       }
     }
   }
@@ -101,7 +93,7 @@ class CharacterEditorState implements GameState
       for(int j = 1240; j <= 1465; j += 75)
       {
         buttons.add(new Button("" + n, j, i, 40, 40, color(50), color(150), color(255)));
-        buttons.add(new Button("" + (n+4), j, i + 75, 40, 40, color(50), color(150), color(255)));
+        buttons.add(new Button("" + (n+4), j, i+75, 40, 40, color(50), color(150), color(255)));
         n++;
       }
     }

@@ -14,8 +14,6 @@ class CharacterEditorState implements GameState
   
   CharacterEditorState(GameData data)
   {
-      
-    
     buttons.add(new Button("Back", 200, data.lilHeight - 75));
     buttons.add(new Button("Reset", 400, data.lilHeight - 75));
     
@@ -59,7 +57,7 @@ class CharacterEditorState implements GameState
     {
       //SKin hair clothes
       Button b = buttons.get(i);
-      if(b.isButtonUsed(pressed))
+      if(b.isButtonUsed(pressed, manager.data.mX(), manager.data.mY()))
       {
         if(i == 0) 
           changeState(manager, manager.previousState);

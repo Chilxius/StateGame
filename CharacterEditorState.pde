@@ -14,10 +14,16 @@ class CharacterEditorState implements GameState
   
   CharacterEditorState(GameData data)
   {
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
     buttons.add(new Button("Back", 200, data.lilHeight - 75));
     buttons.add(new Button("Reset", 400, data.lilHeight - 75));
     
     CreateButtons(); //Buttons 2-59 are color while 59- are style
+    
+    pop();
   }
   
   void update( GameData data ) {}

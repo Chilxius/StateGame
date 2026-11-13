@@ -12,12 +12,12 @@ class CharacterEditorState implements GameState
                            #D97874, #E39B6D, #E8C776, #85B58E, #7BA5C9, #A28EC4, #D98FA8,
                            #4F6D8A, #5B8A72, #B56576, #C49A6C, #6EB5B0, #A3BD75, #D97E6A};
   
-  CharacterEditorState()
+  CharacterEditorState(GameData data)
   {
       
     
-    buttons.add(new Button("Back", 200, height - 75));
-    buttons.add(new Button("Reset", 400, height - 75));
+    buttons.add(new Button("Back", 200, data.lilHeight - 75));
+    buttons.add(new Button("Reset", 400, data.lilHeight - 75));
     
     CreateButtons(); //Buttons 2-59 are color while 59- are style
   }
@@ -32,7 +32,7 @@ class CharacterEditorState implements GameState
     
     background(0);
     noTint();
-    image(data.stagePic, width/2 + 110, height/2 + 20, 500, 580);
+    image(data.stagePic, data.lilWidth/2 + 110, data.lilHeight/2 + 20, 500, 580);
     //Draws all buttons
     for(int i = 0; i < buttons.size(); i++) { buttons.get(i).drawButton(); }
     
@@ -40,13 +40,13 @@ class CharacterEditorState implements GameState
     textAlign(CENTER, CENTER); //Centers text
     
     textSize(50);
-    text("Color", 303, 75); text("Character", width/2 + 110, 75); text("Style", 1355, 75);
+    text("Color", 303, 75); text("Character", data.lilWidth/2 + 110, 75); text("Style", 1355, 75);
     
     textSize(40);
     text("Skin", 303, 200); text("Hair", 303, 400); text("Clothes", 305, 600);
     text("Face", 1352, 200); text("Hair", 1352, 400); text("Clothes", 1352, 600);
     
-    data.character().display(data, width/2 + 110, height/2 - 2, 400);
+    data.character().display(data, data.lilWidth/2 + 110, data.lilHeight/2 - 2, 400);
     
     pop();
   }

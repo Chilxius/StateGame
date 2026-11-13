@@ -9,6 +9,7 @@ class ExploreState implements GameState
   }
   
   void update( GameData data ){}
+  
   void display( GameData data )
   { 
     data.setResolution( data.ritchieWidth, data.ritchieHeight );
@@ -93,7 +94,7 @@ class ExploreState implements GameState
   
   void mouseReact( StateManager manager, boolean pressed )
   {
-    if( menuButton.isButtonUsed(pressed) )
+    if( menuButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )
       manager.setState( new MenuState( manager.data ) );
   }
   

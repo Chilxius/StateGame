@@ -122,8 +122,10 @@ class GameData
   int ritchieHeight = 1067;
   int lilWidth = 1536;
   int lilHeight = 960;
-  int cartWidth = 2880;
-  int cartHeight = 1800;
+  //int cartWidth = 2880;
+  //int cartHeight = 1800;
+  int cartWidth = 1440;
+  int cartHeight = 900;
   
   float scaleX;
   float scaleY;
@@ -139,12 +141,12 @@ class GameData
     scale(scaleX, scaleY);
   }
 
-  float getMouseX()
+  public float mX()
   {
     return mouseX / scaleX;
   }
 
-  float getMouseY()
+  public float mY()
   {
     return mouseY / scaleY;
   }

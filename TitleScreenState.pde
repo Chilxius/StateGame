@@ -7,10 +7,16 @@ class TitleScreenState implements GameState
   
   TitleScreenState(GameData data)
   {
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
     newButton = new Button("New Game", data.cartWidth/2, (data.cartHeight/5), 350, 100);
     wardrobeButton = new Button("Wardrobe", data.cartWidth/2, (data.cartHeight/5)*2, 350, 100);
     creditsButton = new Button("Credits", data.cartWidth/2, (data.cartHeight/5)*3, 350,100);
     quitButton = new Button("Quit Game", data.cartWidth/2, (data.cartHeight/5)*4, 350, 100);
+    
+    pop();
   }
   
   void update( GameData data ){}

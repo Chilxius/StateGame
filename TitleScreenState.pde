@@ -17,11 +17,17 @@ class TitleScreenState implements GameState
   
   void display( GameData data )
   {
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
     background(0);
     newButton.drawButton();
     wardrobeButton.drawButton();
     creditsButton.drawButton();
     quitButton.drawButton();
+    
+    pop();
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}

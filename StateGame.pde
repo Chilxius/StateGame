@@ -6,8 +6,6 @@ void setup()
   fullScreen();
   imageMode(CENTER);
   manager = new StateManager();
-  
-  println(width + " " + height);
 }
 
 void draw()

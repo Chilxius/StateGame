@@ -4,6 +4,7 @@ class TitleScreenState implements GameState
   Button wardrobeButton;
   Button creditsButton;
   Button quitButton;
+  Button lockpickButton;
   
   TitleScreenState(GameData data)
   {
@@ -15,6 +16,7 @@ class TitleScreenState implements GameState
     wardrobeButton = new Button("Wardrobe", data.cartWidth/2, (data.cartHeight/5)*2, 350, 100);
     creditsButton = new Button("Credits", data.cartWidth/2, (data.cartHeight/5)*3, 350,100);
     quitButton = new Button("Quit Game", data.cartWidth/2, (data.cartHeight/5)*4, 350, 100);
+    lockpickButton = new Button("Test Lockpicking", data.cartWidth/2, (data.cartHeight/5)*4.5, 200, 75);
     
     pop();
   }
@@ -32,6 +34,7 @@ class TitleScreenState implements GameState
     wardrobeButton.drawButton();
     creditsButton.drawButton();
     quitButton.drawButton();
+    lockpickButton.drawButton();
     
     pop();
   }
@@ -46,6 +49,8 @@ class TitleScreenState implements GameState
       changeState(manager, new CharacterEditorState(manager.data));
     if (creditsButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))
       changeState(manager, new CreditState(manager.data));
+    if (lockpickButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))
+      changeState(manager, new LockpickState(manager.data));
     if (quitButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))
       exit();
   }

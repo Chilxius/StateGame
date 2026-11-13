@@ -25,7 +25,7 @@ class StateManager
     //state = new TitleScreenState();
     //state = new ExploreState();
     //state = new MenuState();
-    //state = new TrapState();
+    //state = new TrapState( data );
   }
   
   void display()

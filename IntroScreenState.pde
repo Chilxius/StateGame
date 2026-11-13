@@ -22,6 +22,9 @@ class IntroScreenState implements GameState
   
   void display( GameData data )
   {
+    data.setResolution( data.ritchieWidth, data.ritchieHeight );
+    push();
+    data.applyScale();
     
     image( data.introPic, data.ritchieWidth/2, data.ritchieHeight/3-50, 300, 300 );
     
@@ -30,6 +33,8 @@ class IntroScreenState implements GameState
     //data.character().display(data, width/2, height/2-200);
     
     startButton.drawButton();
+    
+    pop();
   }
   
   private void drawGradient( GameData data )

@@ -7,7 +7,7 @@ class TitleScreenState implements GameState
   
   TitleScreenState(GameData data)
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.cartWidth, data.cartHeight );
     push();
     data.applyScale();
     
@@ -23,7 +23,7 @@ class TitleScreenState implements GameState
   
   void display( GameData data )
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.cartWidth, data.cartHeight );
     push();
     data.applyScale();
     

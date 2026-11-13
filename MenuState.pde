@@ -8,12 +8,18 @@ class MenuState implements GameState
   
   MenuState( GameData data )
   {
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
     resumeButton = new Button( "Resume", data.ritchieWidth/2, data.ritchieHeight/4*1, 200, 100 );
     closetButton = new Button( "Edit Character", data.ritchieWidth/2, data.ritchieHeight/4*2, 300, 100 );
     quitButton   = new Button( "Quit", data.ritchieWidth/2, data.ritchieHeight/4*3, 200, 100 );
     
     for( int i = 0; i < 4; i++ )
       lilRats.add( new LilRat( HALF_PI * i, i, data ) );
+      
+    pop();
   }
   
   void update( GameData data )
@@ -63,11 +69,11 @@ class MenuState implements GameState
   
   void mouseReact( StateManager manager, boolean pressed )
   {
-    if( resumeButton.isButtonUsed(pressed) )
+    if( resumeButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )
       changeState( manager, new ExploreState() );
-    else if(closetButton.isButtonUsed(pressed) )
+    else if(closetButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )
       changeState( manager, new CharacterEditorState( manager.data ) );
-    else if(quitButton.isButtonUsed(pressed) )
+    else if(quitButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )
       exit();
     else if( pressed && lilRats.size() < 16 )
       lilRats.add( new LilRat( random(TWO_PI), 5, manager.data ) );

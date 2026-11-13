@@ -71,19 +71,19 @@ class Button
   }
   
   //Check for if the button is under the mouse
-  boolean isButtonUnderMouse()
-  {
-    //Check for if mouse inside the boundaries of a button object
-    if((mouseX > xPos - (bWidth/2) && mouseX < xPos + (bWidth/2)) &&
-       (mouseY > yPos - (bHeight/2) && mouseY < yPos + (bHeight/2)))
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
+  //boolean isButtonUnderMouse()
+  //{
+  //  //Check for if mouse inside the boundaries of a button object
+  //  if((mouseX > xPos - (bWidth/2) && mouseX < xPos + (bWidth/2)) &&
+  //     (mouseY > yPos - (bHeight/2) && mouseY < yPos + (bHeight/2)))
+  //  {
+  //    return true;
+  //  }
+  //  else
+  //  {
+  //    return false;
+  //  }
+  //}
   
   //New version that works with scaling
   boolean isButtonUnderMouse( float mx, float my )
@@ -102,11 +102,11 @@ class Button
   }
   
   //Releases button so its not always pressed down
-  private boolean buttonReleased()
+  private boolean buttonReleased(float mX, float mY)
   {
     flColor = baseFlColor; 
     
-    if(pressed && isButtonUnderMouse())
+    if(pressed && isButtonUnderMouse(mX, mY))
     {
       pressed = false;
       return true;
@@ -119,9 +119,9 @@ class Button
   }
   
   //Methods to report if the button is actually used or not
-  boolean isButtonUsed(boolean pressed) 
+  boolean isButtonUsed(boolean pressed, float mX, float mY) 
   {
-    if (isButtonUnderMouse()) 
+    if (isButtonUnderMouse(mX, mY)) 
     {
         if (pressed) 
         {
@@ -129,7 +129,7 @@ class Button
         } 
         else 
         {
-            if (buttonReleased()) //If mouse is over the button but NOT pressed
+            if (buttonReleased(mX, mY)) //If mouse is over the button but NOT pressed
             {
                 return true;
             }
@@ -139,7 +139,7 @@ class Button
     {
         if (!pressed) //If the mouse is NOT over the button and the click was released
         {
-            buttonReleased(); // Un-press button
+            buttonReleased(mX, mY); // Un-press button
         }
     }
     

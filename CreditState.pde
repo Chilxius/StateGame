@@ -31,7 +31,7 @@ class CreditState implements GameState
   }
   void mouseReact(StateManager manager, boolean pressed)
   {
-    if (backButton.isButtonUsed(pressed))
+    if (backButton.isButtonUsed(pressed, manager.data.mx(), manager.data.mY() ))
       changeState(manager, manager.previousState);
   }
   void changeState(StateManager manager, GameState newState)

@@ -7,7 +7,7 @@ class TitleScreenState implements GameState
   
   TitleScreenState(GameData data)
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.cartWidth, data.cartHeight );
     push();
     data.applyScale();
     
@@ -23,7 +23,7 @@ class TitleScreenState implements GameState
   
   void display( GameData data )
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.cartWidth, data.cartHeight );
     push();
     data.applyScale();
     
@@ -40,13 +40,13 @@ class TitleScreenState implements GameState
   
   void mouseReact( StateManager manager, boolean pressed )
   {
-    if (newButton.isButtonUsed(pressed))
+    if (newButton.isButtonUsed(pressed, manager.data.mx(), manager.data.mY() ))
       changeState(manager, new ExploreState());
-    if (wardrobeButton.isButtonUsed(pressed))
+    if (wardrobeButton.isButtonUsed(pressed, manager.data.mx(), manager.data.mY() ))
       changeState(manager, new CharacterEditorState(manager.data));
-    if (creditsButton.isButtonUsed(pressed))
+    if (creditsButton.isButtonUsed(pressed, manager.data.mx(), manager.data.mY() ))
       changeState(manager, new CreditState(manager.data));
-    if (quitButton.isButtonUsed(pressed))
+    if (quitButton.isButtonUsed(pressed, manager.data.mx(), manager.data.mY() ))
       exit();
   }
   

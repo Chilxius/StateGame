@@ -10,13 +10,19 @@ class ExploreState implements GameState
   
   void update( GameData data ){}
   void display( GameData data )
-  {
+  { 
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
     data.map.display( int(data.charPos().x), int(data.charPos().y) );
     data.character().display( data, data.ritchieWidth/2, data.ritchieHeight/2 );
     
     menuButton.drawButton();
     
     text( ""+noClip, 50, 50 );
+    
+    pop();
   }
   void keyReact( StateManager manager, boolean pressed )
   {

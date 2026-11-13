@@ -24,6 +24,10 @@ class MenuState implements GameState
   
   void display( GameData data )
   {
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
     if(!smear)
       background(0);
     
@@ -33,6 +37,8 @@ class MenuState implements GameState
     resumeButton.drawButton();
     closetButton.drawButton();
     quitButton.drawButton();
+    
+    pop();
   }
   
   void keyReact( StateManager manager, boolean pressed ) 

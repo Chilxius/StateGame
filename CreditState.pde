@@ -4,27 +4,37 @@ class CreditState implements GameState
   
   CreditState(GameData data)
   {
+    data.setResolution( data.cartWidth, data.cartHeight );
+    push();
+    data.applyScale();
+    
     background(0);
     backButton = new Button("Back", data.cartWidth/10, data.cartHeight/10, 150, 100);
+    
+    pop();
   }
   
   void update(GameData data){}
   
   void display(GameData data)
   {
+    data.setResolution( data.cartWidth, data.cartHeight );
+    push();
+    data.applyScale();
+    
     fill(#EFEFEF);
     textSize(60);
     textAlign(CENTER);
-    text("CREDITS", width/2, height/5);
-    text("Bennett Ritchie", width/2, (height/5)*2);
-    image(data.creditPics.get("ritchie"), (width/2)+300,(height/5)*2);
-    text("Lillian Schouweiler", width/2, (height/5)*3);
-    image(data.creditPics.get("lillian"), width/4, (height/5)*3);
-    text("Carter Corbett", width/2, (height/5)*4);
-    image(data.creditPics.get("carter"), (width/2)+300,(height/5)*4);
+    text("CREDITS", data.cartWidth/2, data.cartHeight/5);
+    text("Bennett Ritchie", data.cartWidth/2, (data.cartHeight/5)*2);
+    image(data.creditPics.get("ritchie"), (data.cartWidth/2)+300,(data.cartHeight/5)*2);
+    text("Lillian Schouweiler", data.cartWidth/2, (data.cartHeight/5)*3);
+    image(data.creditPics.get("lillian"), data.cartWidth/4, (data.cartHeight/5)*3);
+    text("Carter Corbett", data.cartWidth/2, (data.cartHeight/5)*4);
+    image(data.creditPics.get("carter"), (data.cartWidth/2)+300,(data.cartHeight/5)*4);
     backButton.drawButton();
     
-    
+    pop();
   }
   void keyReact(StateManager manager, boolean pressed)
   {

@@ -23,6 +23,8 @@ class CreditState implements GameState
     text("Carter Corbett", width/2, (height/5)*4);
     image(data.creditPics.get("carter"), (width/2)+300,(height/5)*4);
     backButton.drawButton();
+    
+    
   }
   void keyReact(StateManager manager, boolean pressed)
   {

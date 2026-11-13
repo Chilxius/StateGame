@@ -15,7 +15,7 @@ class CreditState implements GameState
     fill(#EFEFEF);
     textSize(60);
     textAlign(CENTER);
-    text("CREDITS",width/2, height/5);
+    text("CREDITS", width/2, height/5);
     text("Bennett Ritchie", width/2, (height/5)*2);
     image(data.creditPics.get("ritchie"), (width/2)+300,(height/5)*2);
     text("Lillian Schouweiler", width/2, (height/5)*3);
@@ -31,7 +31,7 @@ class CreditState implements GameState
   }
   void mouseReact(StateManager manager, boolean pressed)
   {
-    if (backButton.isButtonUsed(pressed, manager.data.mx(), manager.data.mY() ))
+    if (backButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))
       changeState(manager, manager.previousState);
   }
   void changeState(StateManager manager, GameState newState)

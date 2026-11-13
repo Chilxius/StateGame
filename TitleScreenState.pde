@@ -31,9 +31,9 @@ class TitleScreenState implements GameState
     if (newButton.isButtonUsed(pressed))
       changeState(manager, new ExploreState());
     if (wardrobeButton.isButtonUsed(pressed))
-      changeState(manager, new CharacterEditorState());
+      changeState(manager, new CharacterEditorState(manager.data));
     if (creditsButton.isButtonUsed(pressed))
-      changeState(manager, new CreditState());
+      changeState(manager, new CreditState(manager.data));
     if (quitButton.isButtonUsed(pressed))
       exit();
   }

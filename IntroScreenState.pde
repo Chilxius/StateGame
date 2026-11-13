@@ -62,7 +62,7 @@ class IntroScreenState implements GameState
   void mouseReact( StateManager manager, boolean pressed )
   {    
     if( startButton.isButtonUsed(pressed) )
-      changeState( manager, new TitleScreenState() );
+      changeState( manager, new TitleScreenState( manager.data ) );
   }
   
   void changeState( StateManager manager, GameState newState )

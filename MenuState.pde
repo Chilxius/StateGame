@@ -60,7 +60,7 @@ class MenuState implements GameState
     if( resumeButton.isButtonUsed(pressed) )
       changeState( manager, new ExploreState() );
     else if(closetButton.isButtonUsed(pressed) )
-      changeState( manager, new CharacterEditorState() );
+      changeState( manager, new CharacterEditorState( manager.data ) );
     else if(quitButton.isButtonUsed(pressed) )
       exit();
     else if( pressed && lilRats.size() < 16 )

@@ -19,5 +19,5 @@ interface GameState
     ...
     
     pop();
-    
+  }
 */

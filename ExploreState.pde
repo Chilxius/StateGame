@@ -1,6 +1,7 @@
 class ExploreState implements GameState
 {
   Button menuButton;
+  boolean noClip = false;
   
   ExploreState()
   {
@@ -11,9 +12,11 @@ class ExploreState implements GameState
   void display( GameData data )
   {
     data.map.display( int(data.charPos().x), int(data.charPos().y) );
-    data.character().display( data, width/2, height/2 );
+    data.character().display( data, data.ritchieWidth/2, data.ritchieHeight/2 );
     
     menuButton.drawButton();
+    
+    text( ""+noClip, 50, 50 );
   }
   void keyReact( StateManager manager, boolean pressed )
   {
@@ -32,6 +35,9 @@ class ExploreState implements GameState
       if( key == ' ' )
         checkInteractions( manager.data );
     }
+    
+    if( pressed && key == '!' )
+      noClip = !noClip;
   }
   
   private void checkInteractions( GameData d )
@@ -69,7 +75,7 @@ class ExploreState implements GameState
     if( dir == 'w' ) destPos.y--;
     if( dir == 's' ) destPos.y++;
     
-    if( manager.data.map.tiles[int(destPos.x)][int(destPos.y)].pathable() )
+    if( manager.data.map.tiles[int(destPos.x)][int(destPos.y)].pathable() || noClip )
     {
       if( manager.data.map.tiles[int(destPos.x)][int(destPos.y)].isButton() )
       {
@@ -82,7 +88,7 @@ class ExploreState implements GameState
   void mouseReact( StateManager manager, boolean pressed )
   {
     if( menuButton.isButtonUsed(pressed) )
-      manager.setState( new MenuState() );
+      manager.setState( new MenuState( manager.data ) );
   }
   
   void changeState( StateManager manager, GameState newState ){manager.setState( newState );}

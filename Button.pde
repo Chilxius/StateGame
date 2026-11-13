@@ -85,6 +85,15 @@ class Button
     }
   }
   
+  //New version that works with scaling
+  boolean isButtonUnderMouse( float mx, float my )
+  {
+    return (mx > xPos - bWidth/2 &&
+            mx < xPos + bWidth/2 &&
+            my > yPos - bHeight/2 &&
+            my < yPos + bHeight/2);
+  }
+  
   //Clicks button so it changes color
   private void buttonClicked()
   {

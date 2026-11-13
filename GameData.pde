@@ -111,4 +111,44 @@ class GameData
   {
     return skin;
   }
+  
+  //************************************//
+  //*** RESOLUTION SCALING FUNCTIONS ***//
+  //************************************//
+  //***       ChatGPT Assisted       ***//
+  //************************************//
+ 
+  int ritchieWidth = 1707;
+  int ritchieHeight = 1067;
+  int lilWidth = 1536;
+  int lilHeight = 960;
+  int cartWidth = 2880;
+  int cartHeight = 1800;
+  
+  float scaleX;
+  float scaleY;
+
+  void setResolution(int originalWidth, int originalHeight)
+  {
+    scaleX = (float)width / originalWidth;
+    scaleY = (float)height / originalHeight;
+  }
+
+  void applyScale()
+  {
+    scale(scaleX, scaleY);
+  }
+
+  float getMouseX()
+  {
+    return mouseX / scaleX;
+  }
+
+  float getMouseY()
+  {
+    return mouseY / scaleY;
+  }
+  
+  //************************************//
+  //************************************//
 }

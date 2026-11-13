@@ -6,14 +6,14 @@ class MenuState implements GameState
   
   boolean smear = false;
   
-  MenuState()
+  MenuState( GameData data )
   {
-    resumeButton = new Button( "Resume", width/2, height/4*1, 200, 100 );
-    closetButton = new Button( "Edit Character", width/2, height/4*2, 300, 100 );
-    quitButton   = new Button( "Quit", width/2, height/4*3, 200, 100 );
+    resumeButton = new Button( "Resume", data.ritchieWidth/2, data.ritchieHeight/4*1, 200, 100 );
+    closetButton = new Button( "Edit Character", data.ritchieWidth/2, data.ritchieHeight/4*2, 300, 100 );
+    quitButton   = new Button( "Quit", data.ritchieWidth/2, data.ritchieHeight/4*3, 200, 100 );
     
     for( int i = 0; i < 4; i++ )
-      lilRats.add( new LilRat( HALF_PI * i, i ) );
+      lilRats.add( new LilRat( HALF_PI * i, i, data ) );
   }
   
   void update( GameData data )
@@ -48,7 +48,7 @@ class MenuState implements GameState
       {
         for( int i = 0; i < 4; i++ )
           if( lilRats.size() < 16 )
-            lilRats.add( new LilRat( HALF_PI * i, 4 ) );
+            lilRats.add( new LilRat( HALF_PI * i, 4, manager.data ) );
       }
       else
         smear = !smear;
@@ -64,7 +64,7 @@ class MenuState implements GameState
     else if(quitButton.isButtonUsed(pressed) )
       exit();
     else if( pressed && lilRats.size() < 16 )
-      lilRats.add( new LilRat( random(TWO_PI), 5 ) );
+      lilRats.add( new LilRat( random(TWO_PI), 5, manager.data ) );
   }
   
   void changeState( StateManager manager, GameState newState )
@@ -79,7 +79,7 @@ class MenuState implements GameState
     boolean growing = true, slowing = false;
     color ratTint;
     
-    LilRat( float r, int c )
+    LilRat( float r, int c, GameData data )
     {
       dist = 1;
       rotation = r;
@@ -107,7 +107,7 @@ class MenuState implements GameState
         default:
           ratTint = color( random(100,255),  random(100,255),  random(100,255) );
           speed = random(0.5,2);
-          dist = width/2+150;
+          dist = data.ritchieWidth/2+150;
           rotation = random(TWO_PI);
       }
     }
@@ -118,7 +118,7 @@ class MenuState implements GameState
       
       if( growing ) dist++;
       else          dist--;
-      if( dist > width/2 ) growing = false;
+      if( dist > data.ritchieWidth/2 ) growing = false;
       if( dist < 100 ) growing = true;
       
       if( slowing ) speed -= 0.002;
@@ -132,7 +132,7 @@ class MenuState implements GameState
       imageMode(CENTER);
       push();
         tint(ratTint);
-        translate(width/2,height/2);
+        translate(data.ritchieWidth/2,data.ritchieHeight/2);
         rotate(rotation);
         translate(0,dist);
         rotate(-rotation);

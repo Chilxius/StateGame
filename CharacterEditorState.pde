@@ -26,11 +26,9 @@ class CharacterEditorState implements GameState
   
   void display( GameData data )
   {
-    //TEMPORARY TRIAL TO FIX POSITIONING
-    float scaleX = width / 1536.0;
-    float scaleY = height / 960.0;
-  
-    scale(scaleX, scaleY);
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    //data.applyScale();
     
     background(0);
     noTint();
@@ -49,6 +47,8 @@ class CharacterEditorState implements GameState
     text("Face", 1352, 200); text("Hair", 1352, 400); text("Clothes", 1352, 600);
     
     data.character().display(data, width/2 + 110, height/2 - 2, 400);
+    
+    pop();
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}

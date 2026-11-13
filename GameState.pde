@@ -7,3 +7,17 @@ interface GameState
   
   void changeState( StateManager manager, GameState newState );
 }
+
+/* How to set up display for correct scaling
+
+  void display( GameData data )
+  {
+    data.setResolution( data.lilWidth, data.lilHeight );
+    push();
+    data.applyScale();
+    
+    ...
+    
+    pop();
+    
+*/

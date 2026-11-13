@@ -4,7 +4,7 @@ class IntroScreenState implements GameState
   
   IntroScreenState( GameData data )
   {
-    startButton = new Button("Start Game", width/2, height-200, 150,100);
+    startButton = new Button("Start Game", data.ritchieWidth/2, data.ritchieHeight-200, 150,100);
     
     background(100);
     
@@ -15,7 +15,7 @@ class IntroScreenState implements GameState
     fill(255);
     textSize(75);
     textAlign(CENTER);
-    text("BEST GAME EVAR",width/2,height/2);
+    text("BEST GAME EVAR",data.ritchieWidth/2,data.ritchieHeight/2);
   }
   
   void update( GameData data ) {}
@@ -23,7 +23,7 @@ class IntroScreenState implements GameState
   void display( GameData data )
   {
     
-    image( data.introPic, width/2, height/3-50, 300, 300 );
+    image( data.introPic, data.ritchieWidth/2, data.ritchieHeight/3-50, 300, 300 );
     
     //image( data.creditPics.get("ritchie"), width/2, height/3-50, 300, 300 );
     

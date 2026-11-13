@@ -30,7 +30,7 @@ class MenuState implements GameState
   
   void display( GameData data )
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.ritchieWidth, data.ritchieHeight );
     push();
     data.applyScale();
     

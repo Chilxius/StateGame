@@ -12,7 +12,7 @@ interface GameState
 
   void display( GameData data )
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.XXXXWidth, data.XXXXHeight );
     push();
     data.applyScale();
     

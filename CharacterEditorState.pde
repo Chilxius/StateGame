@@ -32,7 +32,7 @@ class CharacterEditorState implements GameState
   {
     data.setResolution( data.lilWidth, data.lilHeight );
     push();
-    //data.applyScale();
+    data.applyScale();
     
     background(0);
     noTint();

@@ -8,7 +8,7 @@ class IntroScreenState implements GameState
     
     background(100);
     
-    drawGradient();
+    drawGradient( data );
     
     
     //image( data.introPic, width/2, height/3, 300, 300 );
@@ -32,13 +32,13 @@ class IntroScreenState implements GameState
     startButton.drawButton();
   }
   
-  private void drawGradient()
+  private void drawGradient( GameData data )
   {
     noStroke();
     for( int i = 50; i>=0; i -- )
     {
       fill( 100-i*2, 0, 200-i*4, 200 );
-      circle( width/2, height/2, width/30*i );
+      circle( data.ritchieWidth/2, data.ritchieHeight/2, data.ritchieWidth/30*i );
     }
   }
   

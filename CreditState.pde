@@ -2,10 +2,10 @@ class CreditState implements GameState
 {
   Button backButton;
   
-  CreditState()
+  CreditState(GameData data)
   {
     background(0);
-    backButton = new Button("Back", width/10, height/10, 150, 100);
+    backButton = new Button("Back", data.cartWidth/10, data.cartHeight/10, 150, 100);
   }
   
   void update(GameData data){}

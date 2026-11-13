@@ -5,12 +5,12 @@ class TitleScreenState implements GameState
   Button creditsButton;
   Button quitButton;
   
-  TitleScreenState()
+  TitleScreenState(GameData data)
   {
-    newButton = new Button("New Game", width/2, (height/5), 350, 100);
-    wardrobeButton = new Button("Wardrobe", width/2, (height/5)*2, 350, 100);
-    creditsButton = new Button("Credits", width/2, (height/5)*3, 350,100);
-    quitButton = new Button("Quit Game", width/2, (height/5)*4, 350, 100);
+    newButton = new Button("New Game", data.cartWidth/2, (data.cartHeight/5), 350, 100);
+    wardrobeButton = new Button("Wardrobe", data.cartWidth/2, (data.cartHeight/5)*2, 350, 100);
+    creditsButton = new Button("Credits", data.cartWidth/2, (data.cartHeight/5)*3, 350,100);
+    quitButton = new Button("Quit Game", data.cartWidth/2, (data.cartHeight/5)*4, 350, 100);
   }
   
   void update( GameData data ){}
@@ -31,9 +31,9 @@ class TitleScreenState implements GameState
     if (newButton.isButtonUsed(pressed))
       changeState(manager, new ExploreState());
     if (wardrobeButton.isButtonUsed(pressed))
-      changeState(manager, new CharacterEditorState());
+      changeState(manager, new CharacterEditorState(manager.data));
     if (creditsButton.isButtonUsed(pressed))
-      changeState(manager, new CreditState());
+      changeState(manager, new CreditState(manager.data));
     if (quitButton.isButtonUsed(pressed))
       exit();
   }

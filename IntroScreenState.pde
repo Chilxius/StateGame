@@ -8,14 +8,19 @@ class IntroScreenState implements GameState
     
     background(100);
     
-    drawGradient( data );
+    data.setResolution( data.ritchieWidth, data.ritchieHeight );
+    push();
+    data.applyScale();
     
+    drawGradient( data );
     
     //image( data.introPic, width/2, height/3, 300, 300 );
     fill(255);
     textSize(75);
     textAlign(CENTER);
     text("BEST GAME EVAR",data.ritchieWidth/2,data.ritchieHeight/2);
+    
+    pop();
   }
   
   void update( GameData data ) {}

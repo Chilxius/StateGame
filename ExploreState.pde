@@ -11,7 +11,7 @@ class ExploreState implements GameState
   void update( GameData data ){}
   void display( GameData data )
   { 
-    data.setResolution( data.lilWidth, data.lilHeight );
+    data.setResolution( data.ritchieWidth, data.ritchieHeight );
     push();
     data.applyScale();
     

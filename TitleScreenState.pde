@@ -44,7 +44,7 @@ class TitleScreenState implements GameState
   void mouseReact( StateManager manager, boolean pressed )
   {
     if (newButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))
-      changeState(manager, new ExploreState());
+      changeState(manager, new ExploreState(manager.data));
     if (wardrobeButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))
       changeState(manager, new CharacterEditorState(manager.data));
     if (creditsButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ))

@@ -3,9 +3,15 @@ class ExploreState implements GameState
   Button menuButton;
   boolean noClip = false;
   
-  ExploreState()
-  {
+  ExploreState( GameData data )
+  { 
+    data.setResolution( data.ritchieWidth, data.ritchieHeight );
+    push();
+    data.applyScale();
+    
     menuButton = new Button( "Menu", 100, 100, 75, 50 );
+    
+    pop();
   }
   
   void update( GameData data ){}
@@ -16,7 +22,7 @@ class ExploreState implements GameState
     push();
     data.applyScale();
     
-    data.map.display( int(data.charPos().x), int(data.charPos().y) );
+    data.map.display( data, int(data.charPos().x), int(data.charPos().y) );
     data.character().display( data, data.ritchieWidth/2, data.ritchieHeight/2 );
     
     menuButton.drawButton();
@@ -67,6 +73,9 @@ class ExploreState implements GameState
     //change state to appropriate mini-game
     //send that game the coordiantes so it can clear the tile
     println( code );
+    
+    if( code == '@' )
+      changeState( manager, new LockpickState(manager.data) );
   }
   
   private boolean isDirection( char c )

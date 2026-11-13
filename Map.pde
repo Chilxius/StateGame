@@ -14,14 +14,18 @@ class Map
         tiles[j][i] = new Tile( tileData.charAt(i*100+j), images );
   }
   
-  public void display(int x, int y)
-  {
+  public void display(GameData data, int x, int y)
+  { 
+    //data.setResolution( data.ritchieWidth, data.ritchieHeight );
     push();
+    //data.applyScale();
+    
     rectMode(CENTER);
     imageMode(CENTER);
     for( int i = 0; i < tiles.length; i++ )
       for( int j = 0; j < tiles[0].length; j++ )
-        tiles[i][j].display(width/2+i*64-x*64,height/2+j*64-y*64);
+        tiles[i][j].display(data.ritchieWidth/2+i*64-x*64,data.ritchieHeight/2+j*64-y*64);
+        
     pop();
   }
   

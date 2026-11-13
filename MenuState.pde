@@ -70,7 +70,7 @@ class MenuState implements GameState
   void mouseReact( StateManager manager, boolean pressed )
   {
     if( resumeButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )
-      changeState( manager, new ExploreState() );
+      changeState( manager, new ExploreState(manager.data) );
     else if(closetButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )
       changeState( manager, new CharacterEditorState( manager.data ) );
     else if(quitButton.isButtonUsed(pressed, manager.data.mX(), manager.data.mY() ) )

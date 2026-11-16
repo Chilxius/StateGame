@@ -34,7 +34,7 @@ class CharacterEditorState implements GameState
     push();
     data.applyScale();
     
-    background(0);
+    background(#1c1f1c);
     noTint();
     image(data.stagePic, data.lilWidth/2 + 110, data.lilHeight/2 + 20, 500, 580);
     //Draws all buttons

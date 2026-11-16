@@ -41,7 +41,7 @@ class Button
     roundness = 10;
     pressed = false;
     textColor = color(10);
-    olColor = color(0); flColor = color(255); baseFlColor = flColor;
+    olColor = color(#a1957f); flColor = color(#E7DECD); baseFlColor = flColor;
   }
   
   public Button(String t, float x, float y)
@@ -53,7 +53,7 @@ class Button
     pressed = false;
     textColor = color(10);
     bWidth = 100; bHeight = 50;
-    olColor = color(0); flColor = color(255); baseFlColor = flColor;
+    olColor = color(#a1957f); flColor = color(#E7DECD); baseFlColor = flColor;
   }
   
   //Draws the button
@@ -97,7 +97,7 @@ class Button
   //Clicks button so it changes color
   private void buttonClicked()
   {
-    flColor = lerpColor(baseFlColor, color(0), 0.4);
+    flColor = lerpColor(baseFlColor, color(#a1957f), 0.4);
     pressed = true;
   }
   
@@ -144,6 +144,12 @@ class Button
     }
     
     return false; //Catch-all return
+  }
+  
+  void tintButton()
+  {
+    flColor = lerpColor(baseFlColor, color(#a1957f), 1);
+    olColor = lerpColor(baseFlColor, color(#8c826f), 1);
   }
   
   //Getter Methods

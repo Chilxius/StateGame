@@ -9,6 +9,7 @@ class GameData
   PImage stagePic, bigDoor;
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
+  HashMap<String,PImage> trapPics = new HashMap<String,PImage>();
   
   //HashMap helps to organize the images, and allows them to be
   // passed to Map() while the GameData and StateManager do not
@@ -60,6 +61,10 @@ class GameData
     mapImages.put( "wood button", loadImage( "buttonWood.png" ) );
     mapImages.put( "pushed wood button", loadImage( "buttonWoodPressed.png" ) );
     mapImages.put( "portcullis", loadImage( "portcullis.png" ) );
+    
+    trapPics.put( "spike", loadImage( "trapPit.png" )  );
+    trapPics.put( "rock",  loadImage( "trapRock.png" ) );
+    trapPics.put( "darts", loadImage( "trapDart.png" ) );
     
     introPic = loadImage( "fatRat.png" );
     menuPic = loadImage( "whiteRat.png" ); menuPic.resize(100,0);

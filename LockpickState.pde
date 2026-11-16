@@ -2,11 +2,18 @@ class LockpickState implements GameState
 {
   Button backButton;
   
-  LockpickState(GameData data)
+  int difficulty = 1;
+  float currentPos = 450;
+  float targetNode = random(175, 725);
+  float acc = 0;
+  
+  LockpickState( GameData data )
   {
-    data.setResolution( data.cartWidth, data.cartHeight );
+    data.setResolution(data.cartWidth, data.cartHeight);
     push();
     data.applyScale();
+    
+    image(data.bigDoor, data.cartWidth/2, data.cartHeight/2);
     
     backButton = new Button("Back", data.cartWidth/10, data.cartHeight/10, 150, 100);
     
@@ -24,9 +31,20 @@ class LockpickState implements GameState
     data.applyScale();
     
     rectMode(CENTER);
-    background(0);
-    rect(data.cartWidth/2, data.cartHeight/2, 100, 350);
+    noStroke();
+    fill(#FFFFFF);
+    rect(data.cartWidth/2, data.cartHeight/2, 50, 550);
+    fill(#CC0000);
+    rect(data.cartWidth/2, data.cartHeight/2, 50, 60);
+    noFill();
+    strokeWeight(4);
+    stroke(#000000);
+    rect(data.cartWidth/2, data.cartHeight/2, 50, 550);
+    
+    noStroke();
     backButton.drawButton();
+    
+    //fill(255-progress, progress,0);
     
     pop();
   }

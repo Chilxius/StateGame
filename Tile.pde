@@ -79,7 +79,7 @@ class Tile
     if( code == '~' ) return true;
     if( code == '^' ) return true;
     if( code == '*' ) return true;
-    if( code == '#' ) return true;
+    if( code == '=' ) return true;
     
     return false;
   }

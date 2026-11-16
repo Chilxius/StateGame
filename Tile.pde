@@ -74,6 +74,16 @@ class Tile
     return code >= 97 && code <= 122;
   }
   
+  public boolean isTrap()
+  {
+    if( code == '~' ) return true;
+    if( code == '^' ) return true;
+    if( code == '*' ) return true;
+    if( code == '#' ) return true;
+    
+    return false;
+  }
+  
   public boolean pathable()
   {
     return pathable;

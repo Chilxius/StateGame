@@ -25,6 +25,9 @@ class GameData
   //Navigation data (could be assumed by character)
   //private int mapX, mapY;
   
+  //Temp logic for traps
+  char trapType = ' ';
+  
   GameData()
   {
     loadImages();
@@ -65,6 +68,7 @@ class GameData
     trapPics.put( "spike", loadImage( "trapPit.png" )  );
     trapPics.put( "rock",  loadImage( "trapRock.png" ) );
     trapPics.put( "darts", loadImage( "trapDart.png" ) );
+    trapPics.put( "snake", loadImage( "trapSnake.png" ) );
     
     introPic = loadImage( "fatRat.png" );
     menuPic = loadImage( "whiteRat.png" );          menuPic.resize(100,0);

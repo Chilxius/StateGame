@@ -6,7 +6,7 @@ class GameData
   private PImage browns, skin;
   
   PImage introPic, menuPic;
-  PImage stagePic, bigDoor;
+  PImage stagePic, bigDoor, keyhole;
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
   HashMap<String,PImage> trapPics = new HashMap<String,PImage>();
@@ -67,9 +67,10 @@ class GameData
     trapPics.put( "darts", loadImage( "trapDart.png" ) );
     
     introPic = loadImage( "fatRat.png" );
-    menuPic = loadImage( "whiteRat.png" ); menuPic.resize(100,0);
-    stagePic = loadImage( "stage.png" ); stagePic.resize(500,0);
-    bigDoor = loadImage( "bigWoodBackground.png" );
+    menuPic = loadImage( "whiteRat.png" );          menuPic.resize(100,0);
+    stagePic = loadImage( "stage.png" );            stagePic.resize(500,0);
+    bigDoor = loadImage( "bigWoodBackground.png" ); bigDoor.resize(width,0);
+    keyhole = loadImage( "keyhole.png" );
     
     creditPics.put( "ritchie", loadImage("RedTrollz.png") );
     creditPics.get( "ritchie" ).resize(100,0);

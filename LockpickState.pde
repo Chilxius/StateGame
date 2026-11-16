@@ -30,6 +30,8 @@ class LockpickState implements GameState
     push();
     data.applyScale();
     
+    imageMode(CENTER);
+    image(data.keyhole, data.cartWidth/2, data.cartHeight/2);
     rectMode(CENTER);
     noStroke();
     fill(#FFFFFF);

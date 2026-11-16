@@ -22,7 +22,16 @@ class LockpickState implements GameState
   
   void update(GameData data )
   {
-    
+    if (currentPos < targetNode)
+    {
+      acc += 0.1;
+      currentPos += acc;
+    }
+    else if (currentPos > targetNode)
+    {
+      acc -= 0.1;
+      currentPos += acc;
+    }
   }
   void display(GameData data)
   {

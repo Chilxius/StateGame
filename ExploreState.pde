@@ -108,7 +108,7 @@ class ExploreState implements GameState
       {
         manager.data.character().position = destPos;
         manager.data.trapType = manager.data.map.tiles[int(destPos.x)][int(destPos.y)].code;
-        changeState( manager, new TrapState(manager.data) );
+        changeState( manager, new TrapState(manager.data, manager.data.trapType) );
       }
       else
         manager.data.character().position = destPos;

@@ -66,7 +66,7 @@ class ExploreState implements GameState
             interactWith( d, x, y, i, j, d.map.tiles[i][j].code );
             if( i == x && j == y )
               d.map.tiles[i][j].clearTile();
-            return;
+            //return; //WORRY
           }
   }
   
@@ -74,14 +74,14 @@ class ExploreState implements GameState
   {
     //change state to appropriate mini-game
     //send that game the coordiantes so it can clear the tile
-    println( code );
+    println( code + " " + x + ":" + y + "   " + mx + ":" + my );
     
     if( code == '@' )
       changeState( manager, new LockpickState(manager.data) );
     if( code == '[' && x == mx && y == my )
-      print("FOUND LOCKPICK");
+      println("FOUND LOCKPICK");
     if( code == ']' && x == mx && y == my )
-      print("FOUND OTHER THING I GUESS");
+      println("FOUND OTHER THING I GUESS");
   }
   
   private boolean isDirection( char c )

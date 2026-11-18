@@ -1,6 +1,8 @@
 class CharacterEditorState implements GameState
 {                           
   ArrayList<Button> buttons = new ArrayList<Button>();
+  int xMid;
+  int yMid;
   
   color[] colorPalette = { // 1. SKIN
                            #FFE7D1, #F5CFAF, #E5B288, #C98E63, #A36842, #7A4829, #4A2918,
@@ -12,45 +14,43 @@ class CharacterEditorState implements GameState
                            #D97874, #E39B6D, #E8C776, #85B58E, #7BA5C9, #A28EC4, #D98FA8,
                            #4F6D8A, #5B8A72, #B56576, #C49A6C, #6EB5B0, #A3BD75, #D97E6A};
   
+  //Constructor
   CharacterEditorState(GameData data)
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
-    push();
-    data.applyScale();
+    data.setResolution( data.lilWidth, data.lilHeight ); push(); data.applyScale();
+    
+    xMid = data.lilWidth/2; yMid = data.lilHeight/2;
     
     buttons.add(new Button("Back", 200, data.lilHeight - 75));
     buttons.add(new Button("Reset", 400, data.lilHeight - 75));
-    
-    CreateButtons(); //Buttons 2-59 are color while 59- are style
+    CreateButtons(); //Creates all button options for color and style
     
     pop();
   }
   
+  //Methods
   void update( GameData data ) {}
   
   void display( GameData data )
   {
-    data.setResolution( data.lilWidth, data.lilHeight );
-    push();
-    data.applyScale();
+    data.setResolution( data.lilWidth, data.lilHeight ); push(); data.applyScale();
     
-    background(#1c1f1c);
-    noTint();
-    image(data.stagePic, data.lilWidth/2 + 110, data.lilHeight/2 + 20, 500, 580);
-    //Draws all buttons
-    for(int i = 0; i < buttons.size(); i++) { buttons.get(i).drawButton(); }
+    background(#1c1f1c); noTint();
+    image(data.stagePic, xMid + 110, yMid + 20, 500, 580);
     
-    fill(255);
+    for(int i = 0; i < buttons.size(); i++) {buttons.get(i).drawButton();} //Draws all buttons
+    
+    fill(255); 
     textAlign(CENTER, CENTER); //Centers text
     
     textSize(50);
-    text("Color", 303, 75); text("Character", data.lilWidth/2 + 110, 75); text("Style", 1355, 75);
+    text("Color", 303, 75); text("Character", xMid + 110, 75); text("Style", 1355, 75);
     
     textSize(40);
     text("Skin", 303, 200); text("Hair", 303, 400); text("Clothes", 305, 600);
     text("Face", 1352, 200); text("Hair", 1352, 400); text("Clothes", 1352, 600);
     
-    data.character().display(data, data.lilWidth/2 + 110, data.lilHeight/2 - 2, 400);
+    data.character().display(data, xMid + 110, yMid - 2, 400);
     
     pop();
   }
@@ -93,7 +93,7 @@ class CharacterEditorState implements GameState
     int cIndex = 0; //cIndex means color Index
     for(int i = 250; i <= 650; i += 200)
     {
-      //Both j represents the x position
+      //Both js represents the x position
       for(int j = 79; j <= 529; j += 75)
       {
         buttons.add(new Button(j, i, 40, 40, colorPalette[cIndex], color(150)));
@@ -102,7 +102,7 @@ class CharacterEditorState implements GameState
       }
       cIndex += 7;
       
-      int n = 1; //N is the which number of style
+      int n = 1; //N is the number of style
       for(int j = 1240; j <= 1465; j += 75)
       {
         buttons.add(new Button("" + n, j, i, 40, 40, color(50), color(150), color(255)));

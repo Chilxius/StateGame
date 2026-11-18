@@ -63,12 +63,14 @@ class ExploreState implements GameState
         if( i >= 0 && j >= 0 && i < 100 && j < 100 )  //Ignore if outside map
           if( d.map.tiles[i][j].cleared == false )  //Check if not cleared (walls and floors start cleared)
           {
-            interactWith( d, i, j, d.map.tiles[i][j].code );
+            interactWith( d, x, y, i, j, d.map.tiles[i][j].code );
+            if( i == x && j == y )
+              d.map.tiles[i][j].clearTile();
             return;
           }
   }
   
-  private void interactWith( GameData d, int x, int y, char code )
+  private void interactWith( GameData d, int x, int y, int mx, int my, char code )
   {
     //change state to appropriate mini-game
     //send that game the coordiantes so it can clear the tile
@@ -76,6 +78,10 @@ class ExploreState implements GameState
     
     if( code == '@' )
       changeState( manager, new LockpickState(manager.data) );
+    if( code == '[' && x == mx && y == my )
+      print("FOUND LOCKPICK");
+    if( code == ']' && x == mx && y == my )
+      print("FOUND OTHER THING I GUESS");
   }
   
   private boolean isDirection( char c )

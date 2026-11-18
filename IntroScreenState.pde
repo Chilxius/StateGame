@@ -31,7 +31,8 @@ class IntroScreenState implements GameState
     push();
     data.applyScale();
     
-    image( data.introPic, data.ritchieWidth/2, data.ritchieHeight/3-50, 300, 300 );
+    //image( data.introPic, data.ritchieWidth/2, data.ritchieHeight/3-50, 300, 300 );
+    image( data.introPic, data.ritchieWidth/2, data.ritchieHeight/3-50 );
     
     //image( data.creditPics.get("ritchie"), width/2, height/3-50, 300, 300 );
     

@@ -7,6 +7,7 @@ class GameData
   
   PImage introPic, menuPic;
   PImage stagePic, bigDoor, keyhole;
+  //PImage chest;
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
   HashMap<String,PImage> trapPics = new HashMap<String,PImage>();
@@ -64,10 +65,12 @@ class GameData
     mapImages.put( "wood button", loadImage( "buttonWood.png" ) );
     mapImages.put( "pushed wood button", loadImage( "buttonWoodPressed.png" ) );
     mapImages.put( "portcullis", loadImage( "portcullis.png" ) );
+    mapImages.put( "chest", loadImage( "chestSilver.png" ) );
+    mapImages.put( "open chest", loadImage( "chestOpen.png" ) );
     
     trapPics.put( "spike", loadImage( "trapPit.png" )  );
     trapPics.put( "rock",  loadImage( "trapRock.png" ) );
-    trapPics.put( "darts", loadImage( "trapDart.png" ) );
+    trapPics.put( "darts", loadImage( "trapArrow.png" ) );
     trapPics.put( "snake", loadImage( "trapSnake.png" ) );
     
     introPic = loadImage( "fatRat.png" );

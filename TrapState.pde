@@ -4,7 +4,8 @@ class TrapState implements GameState
   ArrayList<Button> buttons = new ArrayList<Button>();
   PImage trapPic;
   String action = "avoid";
-  String item;
+  //String item;
+  boolean pickedOption = false;
   
   TrapState(GameData data)
   {
@@ -18,6 +19,7 @@ class TrapState implements GameState
     buttons.add(new Button("Attempt to " + action, 289, data.lilHeight - 154, (data.lilWidth - 100)/3, 190));
     buttons.add(new Button("Attempt to run away", 768, data.lilHeight - 154, (data.lilWidth - 100)/3, 190));
     buttons.add(new Button("Attempt to use item", 1248, data.lilHeight - 154, (data.lilWidth - 100)/3, 190));
+    buttons.add(new Button("Continue", data.lilWidth / 2, data.lilHeight - 300, (data.lilWidth - 100)/3, 190));
   }
   
   void update(GameData data) {}
@@ -30,14 +32,19 @@ class TrapState implements GameState
     push();
     data.applyScale();
     
-    for(int i = 0; i < buttons.size(); i++) { buttons.get(i).drawButton(); }
+    if(!pickedOption)
+    {
+      for(int i = 0; i < buttons.size() - 1; i++) { buttons.get(i).drawButton(); }
     
-    fill(#545C52);
-    stroke(#545C52);
-    rectMode(CENTER);
-    image(trapPic, data.lilWidth/2, data.lilHeight/2 - 100);
-    
-    //rect( data.lilWidth/2, data.lilHeight/2 - 100, data.lilWidth-100,data.lilHeight-300);
+      fill(#545C52);
+      stroke(#545C52);
+      rectMode(CENTER);
+      image(trapPic, data.lilWidth/2, data.lilHeight/2 - 100);
+    }
+    else
+    {
+      buttons.get(buttons.size() - 1).drawButton();
+    }
     
     pop();
   }
@@ -45,26 +52,33 @@ class TrapState implements GameState
   void keyReact( StateManager manager, boolean pressed ) {}
   void mouseReact( StateManager manager, boolean pressed ) 
   {
-    int factor = 0;
+    boolean noItem = false;
     
-    if(manager.data.theCharacter.rope < 1) factor = -1; buttons.get(2).tintButton();
+    if(manager.data.theCharacter.rope < 1) noItem = true; buttons.get(2).tintButton();
     
-    for(int i = 0; i < buttons.size() + factor; i++)
+    for(int i = 0; i < buttons.size(); i++)
     {
       //SKin hair clothes
+      if(i == 2 && noItem)
+      {
+        i += 1;
+      }
+      
       Button b = buttons.get(i);
       if(b.isButtonUsed(pressed, manager.data.mX(), manager.data.mY()))
       {
-        //if(i == 0)
-        //{
+        if(i == 0)
+        {
           //if(random()*10 < 9)
-            //changeState(manager, manager.previousState);
-        //}
-        //else if(i == 1)
+          pickedOption = true;
+        }
+        else if(i == 1)
           //if(random()*10 < 8)
-            //changeState(manager, manager.previousState);
-        //else if(i == 2)
-          //
+          pickedOption = true;
+        else if(i == 2)
+          pickedOption = true;
+        else if(i == 3)
+          changeState(manager, manager.previousState);
       }
     }
   }
@@ -81,26 +95,3 @@ class TrapState implements GameState
     }
   }
 }
-
-//public enum Trap
-//{
-//  SPIKES(), PIT(), BOULDER(), BEARTRAP();
-//  String option1;
-//  String option2;
-//  String option3;
-  
-//  Trap(String opt1, String t2, String t3, String t4)
-//  {
-    
-//  }
-  
-//  static public Trap randomTrap()
-//  {
-//    switch((int)(Math.random()*2))
-//    {
-//      case 0: return SPIKES;
-//      case 1: return PIT;
-//      default: return BOULDER;
-//    }
-//  }
-//}

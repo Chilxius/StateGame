@@ -67,4 +67,9 @@ class Character
     setSkinColor(color(190,170,130));
     setClothColor(#F0F0F0);
   }
+  
+  public void useTrapItem(String item)
+  {
+    trapItem.put(item,trapItem.get(item)-1);
+  }
 }

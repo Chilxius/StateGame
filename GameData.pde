@@ -6,7 +6,7 @@ class GameData
   private PImage browns, skin;
   
   PImage introPic, menuPic;
-  PImage stagePic, bigDoor, keyhole;
+  PImage stagePic, bigDoor, keyhole, lockPick;
   //PImage chest;
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
@@ -78,6 +78,7 @@ class GameData
     stagePic = loadImage( "stage.png" );            stagePic.resize(500,0);
     bigDoor = loadImage( "bigWoodBackground.png" ); bigDoor.resize(width,0);
     keyhole = loadImage( "keyhole.png" );
+    lockPick = loadImage( "lockPick.png" );         lockPick.resize(50,0);
     
     creditPics.put( "ritchie", loadImage("RedTrollz.png") );
     creditPics.get( "ritchie" ).resize(100,0);

@@ -45,6 +45,13 @@ class Tile
       tileImage = images.get("chest");
       clearedImage = images.get("open chest");
       pathable = true;
+      cleared = false;
+    }
+    else if( c == '~' || c == '^' || c == '=' || c == '*' )
+    {
+      tileColor = color(150);
+      pathable = true;
+      cleared = false;
     }
     else
     {
@@ -83,6 +90,8 @@ class Tile
   
   public boolean isTrap()
   {
+    if( cleared ) return false;
+    
     if( code == '~' ) return true;
     if( code == '^' ) return true;
     if( code == '*' ) return true;

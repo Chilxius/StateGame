@@ -10,6 +10,7 @@ class LockpickState implements GameState
     data.applyScale();
     
     image(data.bigDoor, data.cartWidth/2, data.cartHeight/2);
+    image(data.keyhole, data.cartWidth/2, data.cartHeight/2);
     
     bar = new Bar();
     
@@ -29,20 +30,18 @@ class LockpickState implements GameState
     data.applyScale();
     
     imageMode(CENTER);
-    //image(data.keyhole, data.cartWidth/2, data.cartHeight/2);
     rectMode(CENTER);
     noStroke();
     fill(#FFFFFF);
     rect(data.cartWidth/2, data.cartHeight/2, 50, 550);
+    bar.display(data);
     noFill();
     strokeWeight(4);
-    stroke(#000000);
+    stroke(#A5A9B4);
     rect(data.cartWidth/2, data.cartHeight/2, 50, 550);
     
     noStroke();
     backButton.drawButton();
-    
-    bar.display(data);
     
     pop();
   }
@@ -83,6 +82,7 @@ class LockpickState implements GameState
     {
       rectMode(CENTER);
       fill(255 - percentComplete*25.6, percentComplete*25.6,0);
+      noStroke();
       rect(data.cartWidth/2, yPos, 50, 60);
     }
     void update()

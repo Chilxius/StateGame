@@ -4,7 +4,11 @@ class Character
   int GP = 0;   //money
   int LP = 0;   //lockpicks
   int rope = 0; //spools of rope
+  int rat = 0; //number of rats for snake traps
+  boolean flute = false; //whether player has found the flute, the permanent item to pass snake traps
+  String [] name = new String [5];
   PVector position = new PVector(2,2);
+  HashMap<String, Integer> trapItem = new HashMap<String, Integer>();
   
   Character()
   {
@@ -14,6 +18,11 @@ class Character
     setHairColor(#EBEFF5);
     setSkinColor(#E5B288);
     setClothColor(#4F6D8A);
+    
+    trapItem.put("rope",0);
+    trapItem.put("mattock",0);
+    trapItem.put("antidote",0);
+    trapItem.put("rat",0);
   }
   
   private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));

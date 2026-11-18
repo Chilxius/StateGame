@@ -2,24 +2,25 @@ class TrapState implements GameState
 {
   //Options are Attempt to jump over/Avoid, Attempt to run away, Attempt to use item
   ArrayList<Button> buttons = new ArrayList<Button>();
-  PImage trapPic;
-  String action = "avoid";
-  //String item;
   boolean pickedOption = false;
+  String action = "avoid";
+  boolean noItem = false;
+  PImage trapPic;
+  int lHeight;
+  int lWidth;
+  //String item;
   
   TrapState(GameData data, char code)
   {
-    trapPic = pickTrap(data);
-    trapPic.resize(data.lilWidth-100, data.lilHeight-300);
-    if(trapPic == data.trapPics.get("spike") || trapPic == data.trapPics.get("snake"))
-    {
-      action = "jump over";
-    }
+    lWidth = data.lilWidth; lHeight = data.lilHeight;
+    pickTrap(data, code);
     
-    buttons.add(new Button("Attempt to " + action, 289, data.lilHeight - 154, (data.lilWidth - 100)/3, 190));
-    buttons.add(new Button("Attempt to run away", 768, data.lilHeight - 154, (data.lilWidth - 100)/3, 190));
-    buttons.add(new Button("Attempt to use item", 1248, data.lilHeight - 154, (data.lilWidth - 100)/3, 190));
-    buttons.add(new Button("Continue", data.lilWidth / 2, data.lilHeight - 300, (data.lilWidth - 100)/3, 190));
+    buttons.add(new Button("Attempt to " + action, 289, lHeight - 154, (lWidth - 100)/3, 190));
+    buttons.add(new Button("Attempt to run away", 768, lHeight - 154, (lWidth - 100)/3, 190));
+    buttons.add(new Button("Attempt to use item", 1248, lHeight - 154, (lWidth - 100)/3, 190));
+    buttons.add(new Button("Continue", data.lilWidth / 2, lHeight - 100, 300, 100));
+    
+    if(data.theCharacter.rope < 1) noItem = true; buttons.get(2).tintButton();
   }
   
   void update(GameData data) {}
@@ -39,7 +40,7 @@ class TrapState implements GameState
       fill(#545C52);
       stroke(#545C52);
       rectMode(CENTER);
-      image(trapPic, data.lilWidth/2, data.lilHeight/2 - 100);
+      image(trapPic, lWidth/2, lHeight/2 - 100);
     }
     else
     {
@@ -50,18 +51,19 @@ class TrapState implements GameState
   }
   
   void keyReact( StateManager manager, boolean pressed ) {}
+  
   void mouseReact( StateManager manager, boolean pressed ) 
   {
-    boolean noItem = false;
-    
-    if(manager.data.theCharacter.rope < 1) noItem = true; buttons.get(2).tintButton();
-    
     for(int i = 0; i < buttons.size(); i++)
     {
       //SKin hair clothes
       if(i == 2 && noItem)
       {
         i += 1;
+      }
+      if(i == 3 && !pickedOption)
+      {
+        return;
       }
       
       Button b = buttons.get(i);
@@ -83,14 +85,17 @@ class TrapState implements GameState
   
   void changeState( StateManager manager, GameState newState ) { manager.setState(newState); }
   
-  PImage pickTrap(GameData data)
+  void pickTrap(GameData data, char code)
   {
-    switch((int)(Math.random()*4))
-    {
-      case 0: return data.trapPics.get("spike");
-      case 1: return data.trapPics.get("rock");
-      case 2: return data.trapPics.get("snake");
-      default: return data.trapPics.get("darts");
-    }
+    if(code == '^') 
+      {trapPic = data.trapPics.get("spike"); action = "jump over";}
+    else if(code == '~')      
+      {trapPic = data.trapPics.get("snake"); action = "jump over";}
+    else if(code == '*') 
+      {trapPic = data.trapPics.get("rock");}
+    else                 
+      {trapPic = data.trapPics.get("darts");}
+    
+    trapPic.resize(lWidth-100, lHeight-300);
   }
 }

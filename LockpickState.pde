@@ -72,8 +72,8 @@ class LockpickState implements GameState
     int difficulty = 1;
     float targetNode = random(175, 725);
     float spd = 0;
-    float acc = 0.3;
-    float friction = 0.95;
+    float acc = 0.24;
+    float friction = 0.97;
     float percentComplete = 0;
     int nextChange = millis() +200;
     float barrier = barSize/2;
@@ -99,8 +99,17 @@ class LockpickState implements GameState
       
       spd *= friction;
       yPos += spd;
-      if (yPos < 175+barrier || yPos > 725-barrier)
+      if (yPos < 175+barrier)
+       {
+         yPos = 175+barrier;
+         spd = spd - 2*spd;
+       }
+      if (yPos > 725-barrier)
+      {
+        yPos = 725-barrier;
         spd = spd - 2*spd;
+      }
+        
     }
   }
 }

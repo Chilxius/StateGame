@@ -7,11 +7,11 @@ class TrapState implements GameState
   //String item;
   boolean pickedOption = false;
   
-  TrapState(GameData data)
+  TrapState(GameData data, char code)
   {
     trapPic = pickTrap(data);
     trapPic.resize(data.lilWidth-100, data.lilHeight-300);
-    if(trapPic == data.trapPics.get("spike"))
+    if(trapPic == data.trapPics.get("spike") || trapPic == data.trapPics.get("snake"))
     {
       action = "jump over";
     }
@@ -68,10 +68,8 @@ class TrapState implements GameState
       if(b.isButtonUsed(pressed, manager.data.mX(), manager.data.mY()))
       {
         if(i == 0)
-        {
           //if(random()*10 < 9)
           pickedOption = true;
-        }
         else if(i == 1)
           //if(random()*10 < 8)
           pickedOption = true;
@@ -87,10 +85,11 @@ class TrapState implements GameState
   
   PImage pickTrap(GameData data)
   {
-    switch((int)(Math.random()*3))
+    switch((int)(Math.random()*4))
     {
       case 0: return data.trapPics.get("spike");
       case 1: return data.trapPics.get("rock");
+      case 2: return data.trapPics.get("snake");
       default: return data.trapPics.get("darts");
     }
   }

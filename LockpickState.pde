@@ -1,11 +1,7 @@
 class LockpickState implements GameState
 {
   Button backButton;
-  
-  int difficulty = 1;
-  float currentPos = 450;
-  float targetNode = random(175, 725);
-  float acc = 0;
+  Bar bar;
   
   LockpickState( GameData data )
   {
@@ -15,23 +11,16 @@ class LockpickState implements GameState
     
     image(data.bigDoor, data.cartWidth/2, data.cartHeight/2);
     
+    bar = new Bar();
+    
     backButton = new Button("Back", data.cartWidth/10, data.cartHeight/10, 150, 100);
     
     pop();
   }
   
-  void update(GameData data )
+  void update(GameData data)
   {
-    if (currentPos < targetNode)
-    {
-      acc += 0.1;
-      currentPos += acc;
-    }
-    else if (currentPos > targetNode)
-    {
-      acc -= 0.1;
-      currentPos += acc;
-    }
+    bar.update();
   }
   void display(GameData data)
   {
@@ -40,13 +29,11 @@ class LockpickState implements GameState
     data.applyScale();
     
     imageMode(CENTER);
-    image(data.keyhole, data.cartWidth/2, data.cartHeight/2);
+    //image(data.keyhole, data.cartWidth/2, data.cartHeight/2);
     rectMode(CENTER);
     noStroke();
     fill(#FFFFFF);
     rect(data.cartWidth/2, data.cartHeight/2, 50, 550);
-    fill(#CC0000);
-    rect(data.cartWidth/2, data.cartHeight/2, 50, 60);
     noFill();
     strokeWeight(4);
     stroke(#000000);
@@ -55,7 +42,7 @@ class LockpickState implements GameState
     noStroke();
     backButton.drawButton();
     
-    //fill(255-progress, progress,0);
+    bar.display(data);
     
     pop();
   }
@@ -72,5 +59,48 @@ class LockpickState implements GameState
   void changeState(StateManager manager, GameState newState)
   {
     manager.setState(newState);
+  }
+  
+  
+  
+  
+  
+  
+  class Bar
+  {
+    float yPos = 450;
+    float barSize = 60;
+    int difficulty = 1;
+    float targetNode = random(175, 725);
+    float spd = 0;
+    float acc = 0.3;
+    float friction = 0.95;
+    float percentComplete = 0;
+    int nextChange = millis() +200;
+    float barrier = barSize/2;
+    
+    void display(GameData data)
+    {
+      rectMode(CENTER);
+      fill(255 - percentComplete*25.6, percentComplete*25.6,0);
+      rect(data.cartWidth/2, yPos, 50, 60);
+    }
+    void update()
+    {
+      if (millis() > nextChange)
+      {
+        nextChange = millis() + 2000;
+        targetNode = random(175+(barrier), 725-(barrier));
+      }
+      if (targetNode > yPos)
+        spd += acc;
+      else
+        spd -= acc;
+      
+      spd *= friction;
+      yPos += spd;
+      if (yPos < 175+barrier || yPos > 725-barrier)
+        spd = spd - 2*spd;
+    }
   }
 }

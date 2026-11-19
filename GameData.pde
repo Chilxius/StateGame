@@ -73,7 +73,7 @@ class GameData
     
     trapPics.put( "spike", loadImage( "trapPit.png" )  );
     trapPics.put( "rock",  loadImage( "trapRock.png" ) );
-    trapPics.put( "darts", loadImage( "trapArrow.png" ) );
+    trapPics.put( "darts", loadImage( "trapPoison.png" ) );
     trapPics.put( "snake", loadImage( "trapSnake.png" ) );
     
     introPic = loadImage( "fatRat.png" );

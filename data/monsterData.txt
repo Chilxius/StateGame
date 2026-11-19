@@ -1,0 +1,16 @@
+0
+Rat
+5
+2
+bites
+scratches
+claws
+scurries
+1
+Skeleton
+10
+4
+slams
+swipes
+rushes
+clatters

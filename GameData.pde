@@ -29,13 +29,16 @@ class GameData
   //Temp logic for traps
   char trapType = ' ';
   
+  //Data for monsters, organized by difficulty level
+  HashMap<Integer,ArrayList<Monster>> monsterList;
+  
   GameData()
   {
     loadImages();
-    theCharacter = new Character();
     
-    //mapX = 2;
-    //mapY = 2;
+    theCharacter = new Character();     //Creates character, which is shared across all states
+    monsterList = dao.getMonsterData(); //Uses the DAO to load monster data from file
+
     map = new Map(mapImages);
   }
   

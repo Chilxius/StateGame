@@ -1,4 +1,14 @@
 /*
+
+Character - add LAST POSITION varialbe so the player can be sent back if they run from fight/trap
+
+
+
+*/
+
+
+
+/*
 rectMode(CENTER)
 imageMode(CENTER)
 

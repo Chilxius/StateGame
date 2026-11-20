@@ -8,7 +8,7 @@ class Character
   boolean flute = false; //whether player has found the flute, the permanent item to pass snake traps
   String [] name = new String [5];
   PVector position = new PVector(2,2);
-  HashMap<String, Integer> trapItem = new HashMap<String, Integer>();
+  HashMap<String, Integer> item = new HashMap<String, Integer>();
   
   Character()
   {
@@ -19,10 +19,10 @@ class Character
     setSkinColor(#E5B288);
     setClothColor(#4F6D8A);
     
-    trapItem.put("rope",0);
-    trapItem.put("mattock",0);
-    trapItem.put("antidote",0);
-    trapItem.put("rat",0);
+    item.put("rope",0);
+    item.put("mattock",0);
+    item.put("antidote",0);
+    item.put("rat",0);
   }
   
   private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));
@@ -68,8 +68,21 @@ class Character
     setClothColor(#F0F0F0);
   }
   
-  public void useTrapItem(String item)
+  public void changeHealth(int healthChange)
   {
-    trapItem.put(item,trapItem.get(item)-1);
+    HP += healthChange;
+  }
+  
+  public void useItem(String i)
+  {
+    item.put(i,item.get(i)-1);
+  }
+  public void getItem(String i)
+  {
+    item.put(i,item.get(i)+1);
+  }
+  public boolean hasItem(String i)
+  {
+    return item.get(i) > 0;
   }
 }

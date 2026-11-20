@@ -23,7 +23,6 @@ class TrapState implements GameState
     buttons.add(new Button("Continue", data.lilWidth / 2, lHeight - 100, 300, 100));
     
     //Needed to disable the item use button if there are no items to use
-    println(item);
     if(!(data.theCharacter.hasItem(item))) {noItem = true; buttons.get(2).tintButton();}
   }
   

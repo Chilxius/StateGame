@@ -2,6 +2,7 @@ class ExploreState implements GameState
 {
   Button menuButton;
   boolean noClip = false;
+  GhostImage ghostImage;
   
   ExploreState( GameData data )
   { 
@@ -14,7 +15,10 @@ class ExploreState implements GameState
     pop();
   }
   
-  void update( GameData data ){}
+  void update( GameData data )
+  {
+    if( ghostImage != null && ghostImage.timer > 0 ) ghostImage.update();
+  }
   
   void display( GameData data )
   { 
@@ -28,6 +32,8 @@ class ExploreState implements GameState
     menuButton.drawButton();
     
     text( ""+noClip, 50, 50 );
+    
+    if( ghostImage != null && ghostImage.timer > 0 ) ghostImage.display();
     
     pop();
   }
@@ -65,9 +71,26 @@ class ExploreState implements GameState
           {
             interactWith( d, x, y, i, j, d.map.tiles[i][j].code );
             if( i == x && j == y )
+            {
+              getLootFrom( d, d.map.tiles[i][j] );
               d.map.tiles[i][j].clearTile();
+            }
             //return; //WORRY
           }
+  }
+  
+  private void getLootFrom( GameData data, Tile t )
+  {
+    if( t.code == '[' )
+    {
+      data.theCharacter.getItem("lockpick");
+      ghostImage = new GhostImage(data, "lockPick", data.ritchieWidth/2, data.ritchieHeight/2);
+    }
+    if( t.code == ']' )
+    {
+      data.theCharacter.getItem("rope");
+      ghostImage = new GhostImage(data, "rope", data.ritchieWidth/2, data.ritchieHeight/2);
+    }
   }
   
   private void interactWith( GameData d, int x, int y, int mx, int my, char code )
@@ -122,4 +145,35 @@ class ExploreState implements GameState
   }
   
   void changeState( StateManager manager, GameState newState ){manager.setState( newState );}
+  
+  class GhostImage
+  {
+    PImage image;
+    float xPos, yPos;
+    int timer;
+    
+    GhostImage( GameData data, String type, float x, float y )
+    {
+      image = data.mapImages.get(type);
+      xPos = x;
+      yPos = y;
+      timer = 500;
+      
+      println(type + " image created");
+    }
+    
+    public void display()
+    {
+      push();
+      tint(255,timer);
+      image(image,xPos,yPos);
+      pop();
+    }
+    
+    public void update()
+    {
+      timer-=15;
+      yPos-=2;
+    }
+  }
 }

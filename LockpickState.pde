@@ -154,6 +154,7 @@ class LockpickState implements GameState
       noFill();
       noStroke();
       image(data.lockPick, data.cartWidth/2, yPos);
+      //line();
     }
   }
 }

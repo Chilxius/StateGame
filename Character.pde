@@ -23,6 +23,7 @@ class Character
     item.put("mattock",0);
     item.put("antidote",0);
     item.put("rat",0);
+    item.put("lockpick",0);
   }
   
   private color hairColor = color(int(random(255)),int(random(255)),int(random(255)));

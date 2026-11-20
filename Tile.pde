@@ -59,6 +59,7 @@ class Tile
     {
       tileColor = color(100);
       tileImage = images.get("hole");
+      clearedImage = images.get("empty");
       pathable = true;
       cleared = false;
     }

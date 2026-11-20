@@ -69,7 +69,9 @@ class GameData
     mapImages.put( "pushed wood button", loadImage( "buttonWoodPressed.png" ) );
     mapImages.put( "portcullis", loadImage( "portcullis.png" ) );
     mapImages.put( "chest", loadImage( "chestSilver.png" ) );
+    mapImages.put( "gold chest", loadImage( "goldChestClosed.png" ) );
     mapImages.put( "open chest", loadImage( "chestOpen.png" ) );
+    mapImages.put( "open gold chest", loadImage( "goldChestOpen.png" ) );
     
     trapPics.put( "spike", loadImage( "trapPit.png" )  );
     trapPics.put( "rock",  loadImage( "trapRock.png" ) );

@@ -39,11 +39,19 @@ class Tile
       clearedImage = images.get("pushed stone button");
       pathable = true;
     }
-    else if( c == '[' || c == ']' )
+    else if( c == '[' )
     {
       tileColor = color(100);
       tileImage = images.get("chest");
       clearedImage = images.get("open chest");
+      pathable = true;
+      cleared = false;
+    }
+    else if( c == ']' )
+    {
+      tileColor = color(100);
+      tileImage = images.get("gold chest");
+      clearedImage = images.get("open gold chest");
       pathable = true;
       cleared = false;
     }

@@ -72,6 +72,7 @@ class GameData
     mapImages.put( "gold chest", loadImage( "goldChestClosed.png" ) );
     mapImages.put( "open chest", loadImage( "chestOpen.png" ) );
     mapImages.put( "open gold chest", loadImage( "goldChestOpen.png" ) );
+    mapImages.put( "hole", loadImage( "hole.png" ) );
     
     trapPics.put( "spike", loadImage( "trapPit.png" )  );
     trapPics.put( "rock",  loadImage( "trapRock.png" ) );

@@ -57,7 +57,8 @@ class Tile
     }
     else if( c == '~' || c == '^' || c == '=' || c == '*' )
     {
-      tileColor = color(150);
+      tileColor = color(100);
+      tileImage = images.get("hole");
       pathable = true;
       cleared = false;
     }

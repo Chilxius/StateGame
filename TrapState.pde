@@ -19,11 +19,12 @@ class TrapState implements GameState
     //All the buttons for both screens. Trap screen and after action screen.
     buttons.add(new Button("Attempt to " + action, 289, lHeight - 154, (lWidth - 100)/3, 190));
     buttons.add(new Button("Attempt to run away", 768, lHeight - 154, (lWidth - 100)/3, 190));
-    buttons.add(new Button("Attempt to use item", 1248, lHeight - 154, (lWidth - 100)/3, 190));
+    buttons.add(new Button("Attempt to use " + item, 1248, lHeight - 154, (lWidth - 100)/3, 190));
     buttons.add(new Button("Continue", data.lilWidth / 2, lHeight - 100, 300, 100));
     
     //Needed to disable the item use button if there are no items to use
-    if(data.theCharacter.rope < 1) {noItem = true; buttons.get(2).tintButton();}
+    println(item);
+    if(!(data.theCharacter.hasItem(item))) {noItem = true; buttons.get(2).tintButton();}
   }
   
   void update(GameData data) {}
@@ -75,23 +76,26 @@ class TrapState implements GameState
         if(i == 0)
         {
           //if(random()*10 < 9) {}
-          manager.data.map.tiles[(int) manager.data.theCharacter.position.x][(int) manager.data.theCharacter.position.y].clearTile();
           pickedOption = true; 
         }
         else if(i == 1)
         {
           //if(random()*10 < 8)
-          manager.data.map.tiles[(int) manager.data.theCharacter.position.x][(int) manager.data.theCharacter.position.y].clearTile();
           pickedOption = true;
         }
         else if(i == 2)
         {
-          manager.data.map.tiles[(int) manager.data.theCharacter.position.x][(int) manager.data.theCharacter.position.y].clearTile();
+          manager.data.theCharacter.useItem(item);
           pickedOption = true;
         }
         else if(i == 3)
           changeState(manager, manager.previousState);
       }
+    }
+    
+    if (pickedOption)
+    {
+      manager.data.map.tiles[(int) manager.data.theCharacter.position.x][(int) manager.data.theCharacter.position.y].clearTile();
     }
   }
   

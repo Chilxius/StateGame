@@ -66,6 +66,7 @@ class Button
     
     textSize(25);
     fill(textColor);
+    strokeWeight(5);
     textAlign(CENTER, CENTER); //Centers text to middle of button
     text(text, xPos, yPos);
   }

@@ -35,7 +35,18 @@ class CharacterEditorState implements GameState
   {
     data.setResolution( data.lilWidth, data.lilHeight ); push(); data.applyScale();
     
-    background(#1c1f1c); noTint();
+    background(#292e28); noTint();
+    
+    rectMode(CENTER);
+    
+    fill(#545C52);
+    stroke(#414740);
+    strokeWeight(10);
+    rect(xMid, 73, data.lilWidth - 10, 140);
+    rect(xMid, data.lilHeight - 78, data.lilWidth - 10, 150);
+    line(xMid - 175, 0, xMid - 175, data.lilHeight);
+    line(xMid + 400, 0, xMid + 400, data.lilHeight);
+    
     image(data.stagePic, xMid + 110, yMid + 20, 500, 580);
     
     for(int i = 0; i < buttons.size(); i++) {buttons.get(i).drawButton();} //Draws all buttons
@@ -96,8 +107,8 @@ class CharacterEditorState implements GameState
       //Both js represents the x position
       for(int j = 79; j <= 529; j += 75)
       {
-        buttons.add(new Button(j, i, 40, 40, colorPalette[cIndex], color(150)));
-        buttons.add(new Button(j, i + 75, 40, 40, colorPalette[cIndex + 7], color(150)));
+        buttons.add(new Button(j, i, 40, 40, colorPalette[cIndex], color(#414740)));
+        buttons.add(new Button(j, i + 75, 40, 40, colorPalette[cIndex + 7], color(#414740)));
         cIndex++;
       }
       cIndex += 7;
@@ -105,8 +116,8 @@ class CharacterEditorState implements GameState
       int n = 1; //N is the number of style
       for(int j = 1240; j <= 1465; j += 75)
       {
-        buttons.add(new Button("" + n, j, i, 40, 40, color(50), color(150), color(255)));
-        buttons.add(new Button("" + (n+4), j, i+75, 40, 40, color(50), color(150), color(255)));
+        buttons.add(new Button("" + n, j, i, 40, 40, color(#545C52), color(#414740), color(255)));
+        buttons.add(new Button("" + (n+4), j, i+75, 40, 40, color(#545C52), color(#414740), color(255)));
         n++;
       }
     }

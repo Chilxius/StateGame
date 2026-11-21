@@ -3,6 +3,7 @@ class ExploreState implements GameState
   Button menuButton;
   boolean noClip = false;
   GhostImage ghostImage;
+  ArrayList<GhostImage> ghostImages;
   
   ExploreState( GameData data )
   { 
@@ -10,14 +11,21 @@ class ExploreState implements GameState
     push();
     data.applyScale();
     
-    menuButton = new Button( "Menu", 100, 100, 75, 50 );
+    ghostImages = new ArrayList<GhostImage>();
+    menuButton = new Button( "Menu", 100, 75, 175, 100 );
     
     pop();
   }
   
   void update( GameData data )
   {
-    if( ghostImage != null && ghostImage.timer > 0 ) ghostImage.update();
+    //for( GhostImage ghostImage: ghostImages ) ghostImage.update();
+    for( int i = 0; i < ghostImages.size(); i++ )
+    {
+      ghostImages.get(i).update();
+      if( ghostImages.get(i).timer <= 0 )
+        ghostImages.remove(i);
+    }
   }
   
   void display( GameData data )
@@ -26,17 +34,22 @@ class ExploreState implements GameState
     push();
     data.applyScale();
     
+    background(0);
+    
     data.map.display( data, int(data.charPos().x), int(data.charPos().y) );
     data.character().display( data, data.ritchieWidth/2, data.ritchieHeight/2 );
     
     menuButton.drawButton();
     
-    text( ""+noClip, 50, 50 );
+    //text( ""+noClip, 50, 50 );
     
-    if( ghostImage != null && ghostImage.timer > 0 ) ghostImage.display();
+    for( GhostImage ghostImage: ghostImages ) ghostImage.display();
+    
+    drawHUD( data );
     
     pop();
   }
+  
   void keyReact( StateManager manager, boolean pressed )
   {
     //Convert arrows to keys
@@ -57,6 +70,39 @@ class ExploreState implements GameState
     
     if( pressed && key == '!' )
       noClip = !noClip;
+  }
+  
+  private void drawHUD( GameData data )
+  {
+    //String [] hudElements = {"sword","lockpick","rope","mattock","antidote","rat"};
+    String [] hudElements = {"lockpick","rope","mattock","antidote","rat"};
+    
+    push();
+    stroke(255);
+    strokeWeight(5);
+    fill(0);
+    rectMode(CENTER);
+    imageMode(CENTER);
+    fill(200);
+    textSize(data.defaultCharSize/2);
+    textAlign(LEFT,CENTER);
+    
+    //Draw all HUD elements
+    for( int i = 0; i < hudElements.length; i++ )
+    {
+      //Draw Backgroud Rectangles
+      rect(data.defaultCharSize, 200+i*data.defaultCharSize*1.5, data.defaultCharSize*1.2, data.defaultCharSize*1.2, 10);
+      //Draw item type
+      if( !data.theCharacter.hasItem(hudElements[i]) )
+        tint(100);
+      else noTint();
+      image( data.mapImages.get(hudElements[i]), data.defaultCharSize, 200+i*data.defaultCharSize*1.5, data.defaultCharSize, data.defaultCharSize);
+      
+      //Print Quantities
+      text(": " + data.theCharacter.item.get(hudElements[i]), data.defaultCharSize*1.75, 200+i*data.defaultCharSize*1.5);
+    }
+    
+    pop();
   }
   
   private void checkInteractions( GameData d )
@@ -83,13 +129,33 @@ class ExploreState implements GameState
   {
     if( t.code == '[' )
     {
-      data.theCharacter.getItem("lockpick");
-      ghostImage = new GhostImage(data, "lockPick", data.ritchieWidth/2, data.ritchieHeight/2);
+      data.theCharacter.getItem("mattock");
+      ghostImages.add( new GhostImage(data, "mattock", data.ritchieWidth/2, data.ritchieHeight/2) );
     }
     if( t.code == ']' )
     {
       data.theCharacter.getItem("rope");
-      ghostImage = new GhostImage(data, "rope", data.ritchieWidth/2, data.ritchieHeight/2);
+      ghostImages.add( new GhostImage(data, "rope", data.ritchieWidth/2, data.ritchieHeight/2) );
+    }
+    if( t.code == '{' )
+    {
+      data.theCharacter.getItem("antidote");
+      ghostImages.add( new GhostImage(data, "antidote", data.ritchieWidth/2, data.ritchieHeight/2) );
+    }
+    if( t.code == '}' )
+    {
+      data.theCharacter.getItem("rat");
+      ghostImages.add( new GhostImage(data, "rat", data.ritchieWidth/2, data.ritchieHeight/2) );
+    }
+    if( t.code == '(' )
+    {
+      data.theCharacter.getItem("lockpick");
+      ghostImages.add( new GhostImage(data, "lockpick", data.ritchieWidth/2, data.ritchieHeight/2) );
+    }
+    if( t.code == ')' )
+    {
+      data.theCharacter.getItem("sword");
+      ghostImages.add( new GhostImage(data, "sword", data.ritchieWidth/2, data.ritchieHeight/2) );
     }
   }
   
@@ -97,14 +163,15 @@ class ExploreState implements GameState
   {
     //change state to appropriate mini-game
     //send that game the coordiantes so it can clear the tile
-    println( code + " " + x + ":" + y + "   " + mx + ":" + my );
+    //println( code + " " + x + ":" + y + "   " + mx + ":" + my );
     
     if( code == '@' )
       changeState( manager, new LockpickState(manager.data) );
-    if( code == '[' && x == mx && y == my )
-      println("FOUND LOCKPICK");
-    if( code == ']' && x == mx && y == my )
-      println("FOUND OTHER THING I GUESS");
+      
+    //if( code == '[' && x == mx && y == my )
+    //  println("FOUND LOCKPICK");
+    //if( code == ']' && x == mx && y == my )
+    //  println("FOUND OTHER THING I GUESS");
   }
   
   private boolean isDirection( char c )
@@ -134,8 +201,23 @@ class ExploreState implements GameState
         changeState( manager, new TrapState(manager.data, manager.data.trapType) );
       }
       else
+      {
         manager.data.character().position = destPos;
+        shiftGhostImages( manager.data, dir );
+      }
     }
+  }
+  
+  private void shiftGhostImages( GameData data, char dir )
+  {
+    int dX = 0, dY = 0;
+    if( dir == 'a' ) dX = data.defaultCharSize;
+    if( dir == 'd' ) dX = -data.defaultCharSize;
+    if( dir == 'w' ) dY = data.defaultCharSize;
+    if( dir == 's' ) dY = -data.defaultCharSize;
+    
+    for( GhostImage g: ghostImages )
+      g.adjust( dX, dY );
   }
   
   void mouseReact( StateManager manager, boolean pressed )
@@ -154,12 +236,13 @@ class ExploreState implements GameState
     
     GhostImage( GameData data, String type, float x, float y )
     {
+      //println(type);
       image = data.mapImages.get(type);
       xPos = x;
       yPos = y;
       timer = 500;
       
-      println(type + " image created");
+      //println(type + " image created");
     }
     
     public void display()
@@ -168,6 +251,12 @@ class ExploreState implements GameState
       tint(255,timer);
       image(image,xPos,yPos);
       pop();
+    }
+    
+    public void adjust( int x, int y )
+    {
+      xPos += x;
+      yPos += y;
     }
     
     public void update()

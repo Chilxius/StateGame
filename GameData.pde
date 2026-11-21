@@ -11,6 +11,7 @@ class GameData
   
   HashMap<String,PImage> creditPics = new HashMap<String,PImage>();
   HashMap<String,PImage> trapPics = new HashMap<String,PImage>();
+  //HashMap<String,PImage> itemPics = new HashMap<String,PImage>();
   
   //HashMap helps to organize the images, and allows them to be
   // passed to Map() while the GameData and StateManager do not
@@ -74,8 +75,20 @@ class GameData
     mapImages.put( "open gold chest", loadImage( "goldChestOpen.png" ) );
     mapImages.put( "hole", loadImage( "hole.png" ) );
     mapImages.put( "empty", loadImage( "empty.png" ) );
-    mapImages.put( "lockPick", loadImage( "lockPick.png" ) ); mapImages.get("lockPick").resize(defaultCharSize,0);
-    mapImages.put( "rope", loadImage( "rope.png" ) );         mapImages.get("rope").resize(defaultCharSize,0);
+    mapImages.put( "lockpick", loadImage( "pickBrass.png" ) ); mapImages.get("lockpick").resize(defaultCharSize,0);
+    mapImages.put( "rope", loadImage( "rope.png" ) );          mapImages.get("rope").resize(defaultCharSize,0);
+    mapImages.put( "rat", loadImage( "rat.png" ) );            mapImages.get("rat").resize(defaultCharSize,0);
+    mapImages.put( "mattock", loadImage( "mattock.png" ) );    mapImages.get("mattock").resize(defaultCharSize,0);
+    mapImages.put( "antidote", loadImage( "antidote.png" ) );  mapImages.get("antidote").resize(defaultCharSize,0);
+    mapImages.put( "sword", loadImage( "MetalSword.png" ) );        mapImages.get("sword").resize(defaultCharSize,0);
+    
+    //Probably don't need these
+    //itemPics.put( "rat", loadImage( "rat.png" ) );
+    //itemPics.put( "rope", loadImage( "rope.png" ) );
+    //itemPics.put( "antidote", loadImage( "antidote.png" ) );
+    //itemPics.put( "mattock", loadImage( "mattock.png") );
+    //itemPics.put( "lockpick", loadImage( "pickBrass.png") );
+    //itemPics.put( "sword", loadImage( "MetalSword.png" ) );
     
     trapPics.put( "spike", loadImage( "trapPit.png" )  );
     trapPics.put( "rock",  loadImage( "trapRock.png" ) );

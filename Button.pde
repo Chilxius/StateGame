@@ -60,13 +60,13 @@ class Button
   void drawButton()
   {
     stroke(olColor);
+    strokeWeight(5);
     rectMode(CENTER); //Rect draws from center now instead of left top corner
     fill(flColor);
     rect(xPos, yPos, bWidth, bHeight, roundness);
     
     textSize(25);
     fill(textColor);
-    strokeWeight(5);
     textAlign(CENTER, CENTER); //Centers text to middle of button
     text(text, xPos, yPos);
   }

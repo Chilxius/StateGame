@@ -80,25 +80,25 @@ class ExploreState implements GameState
     push();
     stroke(255);
     strokeWeight(5);
-    fill(0);
     rectMode(CENTER);
     imageMode(CENTER);
-    fill(200);
-    textSize(data.defaultCharSize/2);
+    textSize(data.defaultCharSize*0.75);
     textAlign(LEFT,CENTER);
     
     //Draw all HUD elements
     for( int i = 0; i < hudElements.length; i++ )
     {
       //Draw Backgroud Rectangles
+      fill(0);
       rect(data.defaultCharSize, 200+i*data.defaultCharSize*1.5, data.defaultCharSize*1.2, data.defaultCharSize*1.2, 10);
       //Draw item type
       if( !data.theCharacter.hasItem(hudElements[i]) )
-        tint(100);
+        tint(200,75);
       else noTint();
       image( data.mapImages.get(hudElements[i]), data.defaultCharSize, 200+i*data.defaultCharSize*1.5, data.defaultCharSize, data.defaultCharSize);
       
       //Print Quantities
+      fill(200);
       text(": " + data.theCharacter.item.get(hudElements[i]), data.defaultCharSize*1.75, 200+i*data.defaultCharSize*1.5);
     }
     
@@ -121,7 +121,7 @@ class ExploreState implements GameState
               getLootFrom( d, d.map.tiles[i][j] );
               d.map.tiles[i][j].clearTile();
             }
-            //return; //WORRY
+            //return; //WORRIED about turning this off...
           }
   }
   
@@ -228,6 +228,9 @@ class ExploreState implements GameState
   
   void changeState( StateManager manager, GameState newState ){manager.setState( newState );}
   
+  //*****************************//
+  //** Temporary Fading Images **//
+  //*****************************//
   class GhostImage
   {
     PImage image;
@@ -236,13 +239,10 @@ class ExploreState implements GameState
     
     GhostImage( GameData data, String type, float x, float y )
     {
-      //println(type);
       image = data.mapImages.get(type);
       xPos = x;
       yPos = y;
       timer = 500;
-      
-      //println(type + " image created");
     }
     
     public void display()
